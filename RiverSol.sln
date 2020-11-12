@@ -6,8 +6,14 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RiverApp", "River\RiverApp.csproj", "{B3EE5BA9-ACDD-4CD5-A872-0EB4153F9C84}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataLayer", "DataLayer", "{C6EE1BA5-3D41-4051-B045-3C34CD629443}"
+	ProjectSection(SolutionItems) = preProject
+		DataModuleInfo.txt = DataModuleInfo.txt
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{D1E3D695-566D-42ED-B0C9-C9605DB227FE}"
+	ProjectSection(SolutionItems) = preProject
+		LibModuleInfo.txt = LibModuleInfo.txt
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandCore", "CommandCore\CommandCore.csproj", "{3A7C841F-2491-49C5-ADC3-0D7F4AF9D865}"
 EndProject
