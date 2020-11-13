@@ -1,0 +1,25 @@
+﻿.smart-separator {
+  min-height: 2.5rem; }
+
+#up {
+  background-image: url("../img/Separator.jpg");
+  background-size: cover;
+  background-position: left bottom; }
+
+#down {
+  background-image: url("../img/SeparatorDown.jpg");
+  background-size: cover;
+  background-position: left top; }
+
+.content-splash {
+  display: flex;
+  justify-content: center; }
+  @media screen and (max-width: 768px) {
+    .content-splash {
+      flex-wrap: wrap-reverse; } }
+  .content-splash .new-section {
+    display: flex;
+    justify-content: center; }
+  .content-splash .features-section {
+    display: flex;
+    justify-content: center; }
