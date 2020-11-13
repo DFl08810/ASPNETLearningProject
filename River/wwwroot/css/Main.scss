@@ -1,5 +1,13 @@
-﻿$color: #006466;
+﻿$color_multi: #006466;
 
+$color_dark: #1D2647;
+$color_green: #3C9196;
+$color_beige: #EEE8CB;
+$color_yellow: #E7A838;
+$color_red: #D74726;
+
+
+$gradient: radial-gradient(circle, rgba(36,46,81,1) 0%, rgba(41,50,89,1) 0%, rgba(29,38,71,1) 73%);
 .smart-separator {
     min-height: 2.5rem;
 
@@ -24,16 +32,50 @@
     @media screen and (max-width: 768px) {
         flex-wrap: wrap-reverse;
     }
-    
-    .new-section {
+
+    .section {
         display: flex;
-        justify-content: center;
-        //width: 50%;
+        flex-direction: column;
+        padding: 1.5rem;
+
+        @media screen and (min-width: 768px) {
+            max-width: 50%;
+        }
+    }
+}
+
+.card-navigator {
+    display: flex;
+    flex-wrap: wrap;
+
+
+    .card {
+        margin-bottom: 0.5rem;
+        margin-right: 0.5rem;
+    }
+}
+
+.bg-cosmic {
+    background: $gradient;
+}
+
+.footer-notice {
+    color: $color_beige;
+
+    a {
+        color: $color_green;
+    }
+}
+
+.navbar {
+    .navbar-brand {
+        color: $color_beige;
+        font-weight: 500;
     }
 
-    .features-section {
-        display: flex;
-        justify-content: center;
-        //width: 50%;
+
+    .text-light {
+        color: $color_beige !important;
+        font-weight: 500;
     }
-} 
+}
