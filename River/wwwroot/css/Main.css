@@ -31,6 +31,12 @@
   .card-navigator .card {
     margin-bottom: 0.5rem;
     margin-right: 0.5rem; }
+    @media screen and (min-width: 768px) {
+      .card-navigator .card {
+        max-width: 48%; } }
+    @media screen and (min-width: 1586px) {
+      .card-navigator .card {
+        max-width: 100%; } }
 
 .bg-cosmic {
   background: radial-gradient(circle, #242e51 0%, #293259 0%, #1d2647 73%); }
@@ -49,17 +55,25 @@
   .navbar .text-light {
     color: #EEE8CB !important;
     font-weight: 500; }
+  .navbar .dropdown-menu {
+    background: radial-gradient(circle, #242e51 0%, #293259 0%, #1d2647 73%); }
+    @media (max-width: 576px) {
+      .navbar .dropdown-menu {
+        background-color: transparent;
+        border: none; }
+        .navbar .dropdown-menu .dropdown-item:hover {
+          background-color: transparent; } }
+    .navbar .dropdown-menu .dropdown-item:hover {
+      background-color: #1D2647; }
+
+#welcome_section {
+  padding: 2rem 0 2rem 0; }
 
 .articles {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  padding: 1.5rem 1.5rem 1.5rem 1.5rem;
-  background-image: url(../img/chemicals.png);
-  background-position: right -200px top 0px;
-  background-repeat: no-repeat;
-  background-size: 30%;
-  background-origin: content-box; }
+  padding: 1.5rem 1.5rem 1.5rem 1.5rem; }
   .articles .article {
     display: flex;
     flex-flow: column;
