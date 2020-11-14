@@ -5,11 +5,11 @@ $color_green: #3C9196;
 $color_beige: #EEE8CB;
 $color_yellow: #E7A838;
 $color_red: #D74726;
-
+$color_greywhite: #d0d0d0;
 
 $gradient: radial-gradient(circle, rgba(36,46,81,1) 0%, rgba(41,50,89,1) 0%, rgba(29,38,71,1) 73%);
 .smart-separator {
-    min-height: 2.5rem;
+    min-height: 1.0rem;
 
 }
 
@@ -61,6 +61,7 @@ $gradient: radial-gradient(circle, rgba(36,46,81,1) 0%, rgba(41,50,89,1) 0%, rgb
 
 .footer-notice {
     color: $color_beige;
+    font-size:18px;
 
     a {
         color: $color_green;
@@ -68,6 +69,7 @@ $gradient: radial-gradient(circle, rgba(36,46,81,1) 0%, rgba(41,50,89,1) 0%, rgb
 }
 
 .navbar {
+    padding: 0.25rem 1rem !important;
     .navbar-brand {
         color: $color_beige;
         font-weight: 500;
@@ -77,5 +79,58 @@ $gradient: radial-gradient(circle, rgba(36,46,81,1) 0%, rgba(41,50,89,1) 0%, rgb
     .text-light {
         color: $color_beige !important;
         font-weight: 500;
+    }
+}
+
+.articles {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction:column;
+    margin: 1.5rem;
+
+    .article {
+        display: flex;
+        flex-flow: column;
+        padding: 0.5rem 0 0.5rem 0;
+
+        .article-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: $color_multi;
+        }
+    }
+}
+
+.world {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5rem;
+
+    .world-in-data {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+
+        .data {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            align-content: center;
+            min-width: 33%;
+            min-height: 7rem;
+            margin: 0.5rem 0 0.5rem 0;
+        }
+
+        .number-container {
+            background-color: $color_greywhite;
+        }
+        
     }
 }

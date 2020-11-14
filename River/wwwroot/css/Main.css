@@ -1,5 +1,5 @@
 ﻿.smart-separator {
-  min-height: 2.5rem; }
+  min-height: 1.0rem; }
 
 #up {
   background-image: url("../img/Separator.jpg");
@@ -36,14 +36,56 @@
   background: radial-gradient(circle, #242e51 0%, #293259 0%, #1d2647 73%); }
 
 .footer-notice {
-  color: #EEE8CB; }
+  color: #EEE8CB;
+  font-size: 18px; }
   .footer-notice a {
     color: #3C9196; }
 
-.navbar .navbar-brand {
-  color: #EEE8CB;
-  font-weight: 500; }
+.navbar {
+  padding: 0.25rem 1rem !important; }
+  .navbar .navbar-brand {
+    color: #EEE8CB;
+    font-weight: 500; }
+  .navbar .text-light {
+    color: #EEE8CB !important;
+    font-weight: 500; }
 
-.navbar .text-light {
-  color: #EEE8CB !important;
-  font-weight: 500; }
+.articles {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 1.5rem; }
+  .articles .article {
+    display: flex;
+    flex-flow: column;
+    padding: 0.5rem 0 0.5rem 0; }
+    .articles .article .article-title {
+      font-size: 18px;
+      font-weight: 500;
+      color: #006466; }
+
+.world {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  margin: 1.5rem; }
+  .world .world-in-data {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center; }
+    .world .world-in-data .data {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+      align-content: center;
+      min-width: 33%;
+      min-height: 7rem;
+      margin: 0.5rem 0 0.5rem 0; }
+    .world .world-in-data .number-container {
+      background-color: #d0d0d0; }
