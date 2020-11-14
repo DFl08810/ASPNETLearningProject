@@ -9,7 +9,7 @@ $color_greywhite: #d0d0d0;
 
 $gradient: radial-gradient(circle, rgba(36,46,81,1) 0%, rgba(41,50,89,1) 0%, rgba(29,38,71,1) 73%);
 .smart-separator {
-    min-height: 1.0rem;
+    min-height: 0.5rem;
 
 }
 
@@ -85,8 +85,13 @@ $gradient: radial-gradient(circle, rgba(36,46,81,1) 0%, rgba(41,50,89,1) 0%, rgb
 .articles {
     display: flex;
     flex-wrap: wrap;
-    flex-direction:column;
-    margin: 1.5rem;
+    flex-direction: column;
+    padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+    background-image: url(../img/chemicals.png);
+    background-position: right -200px top 0px;
+    background-repeat: no-repeat;
+    background-size: 30%;
+    background-origin: content-box;
 
     .article {
         display: flex;
