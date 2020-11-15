@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataCore.DataModels
+namespace DataCore.Entities
 {
-    public class ArticleDataModel
+    public class Article
     {
         public int Id { get; set; }
         public string Title { get; set; }

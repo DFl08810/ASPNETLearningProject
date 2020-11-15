@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataCore.DataModels
+namespace DataCore.Entities
 {
     public class Author
     {

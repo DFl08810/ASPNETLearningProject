@@ -19,6 +19,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataCore", "DataCore\DataCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCApp", "MVCApp\MVCApp.csproj", "{7BD236B6-3C13-489A-A529-56CD2A76E1CD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{841DE602-FAAF-4EB4-94CA-B8261B3170F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicTest", "LogicTest\LogicTest.csproj", "{F616C0B1-C467-40DD-A4EA-306AB2DDC4DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,10 @@ Global
 		{7BD236B6-3C13-489A-A529-56CD2A76E1CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BD236B6-3C13-489A-A529-56CD2A76E1CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BD236B6-3C13-489A-A529-56CD2A76E1CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F616C0B1-C467-40DD-A4EA-306AB2DDC4DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F616C0B1-C467-40DD-A4EA-306AB2DDC4DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F616C0B1-C467-40DD-A4EA-306AB2DDC4DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F616C0B1-C467-40DD-A4EA-306AB2DDC4DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +52,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3A7C841F-2491-49C5-ADC3-0D7F4AF9D865} = {D1E3D695-566D-42ED-B0C9-C9605DB227FE}
 		{3583B2F7-788E-466D-BF00-B9083448E3E2} = {C6EE1BA5-3D41-4051-B045-3C34CD629443}
+		{F616C0B1-C467-40DD-A4EA-306AB2DDC4DC} = {841DE602-FAAF-4EB4-94CA-B8261B3170F4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E34FDA20-0B96-477B-B8D2-AF9E234462F7}
