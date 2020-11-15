@@ -19,4 +19,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CommandCore\CommandCore.csproj" />
+    <ProjectReference Include="..\DataCore\DataCore.csproj" />
+    <ProjectReference Include="..\MVCApp\MVCApp.csproj" />
+  </ItemGroup>
+
 </Project>
