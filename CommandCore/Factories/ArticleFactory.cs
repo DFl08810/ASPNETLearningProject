@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CommandCore.Factories
 {
-    public class ArticleFactory
+    public class ArticleFactory : IArticleFactory
     {
         private readonly IArticleDB _articleDB;
 

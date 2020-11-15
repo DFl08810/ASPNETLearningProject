@@ -6,7 +6,7 @@ using Xunit;
 
 namespace LogicTest
 {
-    public class UnitTest1
+    public class CommandCoreTest
     {
         [Fact]
         public void Test1()
