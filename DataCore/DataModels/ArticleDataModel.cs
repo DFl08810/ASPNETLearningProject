@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataCore.DataModels
 {
-    class ArticleModel
+    public class ArticleDataModel
     {
         public int Id { get; set; }
         public string Title { get; set; }
