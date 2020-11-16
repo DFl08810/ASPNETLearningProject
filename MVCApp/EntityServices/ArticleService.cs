@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace MVCApp.EntityServices
 {
+
+    //This service provides all essential functions for operating with article models
+    //It can use factories to fetch articles from database and use the same factories to create objects for writing objects into database
+    //It contains auxiliary functions related to sorting lists retrieved from database
     public class ArticleService : IArticleService
     {
         private readonly IArticleFactory _articleFactory;

@@ -9,6 +9,7 @@ namespace CommandCore.Factories
 {
     public interface IArticleFactory
     {
+        List<ArticlePrefab> CreateArticle();
         List<ArticlePrefab> CreateArticles();
 
     }

@@ -19,9 +19,23 @@ namespace CommandCore.Factories
 
         public List<ArticlePrefab> CreateArticles()
         {
-            var x = _articleDB.GetArticle();
+            var articles = _articleDB.GetArticle();
+            var articlePrefabs = new List<ArticlePrefab>();
 
-            var single = x.First();
+            foreach (var article in articles)
+            {
+                var articlePrefab = new ArticlePrefab(article);
+                articlePrefabs.Add(articlePrefab.ConvertObject());
+            }
+
+            return articlePrefabs;
+        }
+
+        public List<ArticlePrefab> CreateArticle()
+        {
+            var articles = _articleDB.GetArticle();
+
+            var single = articles.First();
 
             ArticlePrefab y = new ArticlePrefab(single);
             y.ConvertObject();

@@ -1,9 +1,13 @@
+using CommandCore.Factories;
+using DataCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MVCApp.EntityServices;
+using MVCApp.Models.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +28,16 @@ namespace MVCApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            #region PresentationServices
+            services.AddTransient<IArticleModelFactory, ArticleModelFactory>();
+            services.AddTransient<IArticleService, ArticleService>();
+            #endregion
+            #region CommandServices
+            services.AddTransient<IArticleFactory, ArticleFactory>();
+            #endregion
+            #region DataServices
+            services.AddTransient<IArticleDB, ArticleDB>();
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
