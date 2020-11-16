@@ -9,5 +9,7 @@ namespace MVCApp.EntityServices
     public interface IArticleService
     {
         List<ArticleModel> FetchArticles();
+
+        bool PostArticle(ArticleModel article);
     }
 }

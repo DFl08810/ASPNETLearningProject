@@ -17,5 +17,12 @@ namespace DataCore
 
             return output;
         }
+
+        public bool PostArticle(Article article)
+        {
+            var writingVar = article;
+            //TODO: logic for database update
+            return true;
+        }
     }
 }

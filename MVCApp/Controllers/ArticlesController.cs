@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVCApp.EntityServices;
+using MVCApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,18 @@ namespace MVCApp.Controllers
             //Gets articles from database through internal logic
             var articles = _articleService.FetchArticles();
             return View(articles);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(ArticleModel article)
+        {
+            var article1 = new ArticleModel { Id = 6, Title = "Zivot savcu reverse", Synopsis = "Blabla", Content = "Savci ziji ale opacne" };
+            var actionStatus = _articleService.PostArticle(article1);
+            return View();
         }
     }
 }

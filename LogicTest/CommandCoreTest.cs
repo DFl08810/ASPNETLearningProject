@@ -12,7 +12,7 @@ namespace LogicTest
         public void Test1()
         {
             var article = new ArticleDB();
-            var factory = new ArticleFactory(article);
+            var factory = new ArticlePrefactory(article);
 
             var x = factory.CreateArticles();
 

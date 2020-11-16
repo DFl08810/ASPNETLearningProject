@@ -10,5 +10,6 @@ namespace DataCore
     public interface IArticleDB
     {
         List<Article> GetArticle();
+        bool PostArticle(Article article);
     }
 }

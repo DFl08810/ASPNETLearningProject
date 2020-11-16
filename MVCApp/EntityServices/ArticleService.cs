@@ -1,4 +1,6 @@
 ﻿using CommandCore.Factories;
+using CommandCore.Prefabs;
+using CommandCore.Services;
 using MVCApp.Models;
 using MVCApp.Models.Factories;
 using System;
@@ -14,22 +16,36 @@ namespace MVCApp.EntityServices
     //It contains auxiliary functions related to sorting lists retrieved from database
     public class ArticleService : IArticleService
     {
-        private readonly IArticleFactory _articleFactory;
+        private readonly IArticlePrefactory _articlePrefactory;
         private readonly IArticleModelFactory _articleModelFactory;
+        private readonly IPublishingService _publishingService;
 
-        public ArticleService(IArticleFactory articleFactory, IArticleModelFactory articleModelFactory)
+        public ArticleService(IArticlePrefactory articlePrefactory, IArticleModelFactory articleModelFactory,
+                            IPublishingService publishingService)
         {
-            this._articleFactory = articleFactory;
+            this._articlePrefactory = articlePrefactory;
             this._articleModelFactory = articleModelFactory;
+            this._publishingService = publishingService;
         }
 
         public List<ArticleModel> FetchArticles()
         {
-            var articlesFab = _articleFactory.CreateArticles();
+            var articlesFab = _articlePrefactory.CreateArticles();
 
             var articleModels = _articleModelFactory.GetArticleModels(articlesFab);
 
             return articleModels;
         }
+
+        #region submissionProcess
+        public bool PostArticle(ArticleModel article)
+        {
+            var articlePrefab = new ArticlePrefab(article.Id, article.Title, article.Synopsis, article.Content);
+            var result = _publishingService.PublishData(articlePrefab);
+
+            return result;
+
+        }
+        #endregion
     }
 }

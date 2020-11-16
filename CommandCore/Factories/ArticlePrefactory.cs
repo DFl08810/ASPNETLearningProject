@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace CommandCore.Factories
 {
-    public class ArticleFactory : IArticleFactory
+    public class ArticlePrefactory : IArticlePrefactory
     {
         private readonly IArticleDB _articleDB;
 
-        public ArticleFactory(IArticleDB articleDB)
+        public ArticlePrefactory(IArticleDB articleDB)
         {
             this._articleDB = articleDB;
         }

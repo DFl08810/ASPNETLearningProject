@@ -1,4 +1,5 @@
 using CommandCore.Factories;
+using CommandCore.Services;
 using DataCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,7 +34,8 @@ namespace MVCApp
             services.AddTransient<IArticleService, ArticleService>();
             #endregion
             #region CommandServices
-            services.AddTransient<IArticleFactory, ArticleFactory>();
+            services.AddTransient<IArticlePrefactory, ArticlePrefactory>();
+            services.AddTransient<IPublishingService, PublishingService>();
             #endregion
             #region DataServices
             services.AddTransient<IArticleDB, ArticleDB>();

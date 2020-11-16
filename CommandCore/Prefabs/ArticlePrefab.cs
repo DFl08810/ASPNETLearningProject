@@ -16,6 +16,15 @@ namespace CommandCore.Prefabs
             this._article = article;
         }
 
+
+        public ArticlePrefab(int id, string title, string synopsis, string content)
+        {
+            Id = id;
+            Title = title;
+            Synopsis = synopsis;
+            Content = content;
+        }
+
         public int Id { get; private set; }
         public string Title { get; private set; }
         public string Synopsis { get; private set; }

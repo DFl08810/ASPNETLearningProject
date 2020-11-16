@@ -5,12 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommandCore.Factories
+namespace CommandCore.Services
 {
-    public interface IArticleFactory
+    public interface IPublishingService
     {
-        List<ArticlePrefab> CreateArticle();
-        List<ArticlePrefab> CreateArticles();
-
+        bool PublishData(ArticlePrefab articlePrefab);
     }
 }
