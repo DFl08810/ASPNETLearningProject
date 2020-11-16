@@ -1,14 +1,13 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using MVCApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using River.Models;
-using RiverApp.Models;
 
-namespace River.Controllers
+namespace MVCApp.Controllers
 {
     public class HomeController : Controller
     {
@@ -21,7 +20,6 @@ namespace River.Controllers
 
         public IActionResult Index()
         {
-            var articleObject = new ArticleModel();
             return View();
         }
 

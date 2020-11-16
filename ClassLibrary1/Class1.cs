@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DataCore
+namespace ClassLibrary1
 {
     public class Class1
     {
