@@ -1,6 +1,7 @@
 using CommandCore.Factories;
 using CommandCore.Services;
 using DataCore;
+using DataCore.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -38,7 +39,9 @@ namespace MVCApp
             services.AddTransient<IPublishingService, PublishingService>();
             #endregion
             #region DataServices
-            services.AddTransient<IArticleDB, ArticleDB>();
+            services.AddDbContext<DataContext>();
+            services.AddTransient<IArticleDataAccess, ArticleDataAccess>();
+            services.AddTransient<IArticleDB, ArticleDbService>();
             #endregion
         }
 
