@@ -35,8 +35,7 @@ namespace MVCApp.Controllers
         [HttpPost]
         public IActionResult Create(ArticleModel article)
         {
-            var article1 = new ArticleModel { Id = 6, Title = "Zivot savcu reverse", Synopsis = "Blabla", Content = "Savci ziji ale opacne" };
-            var actionStatus = _articleService.PostArticle(article1);
+            var actionStatus = _articleService.PostArticle(article);
             return View();
         }
     }

@@ -11,14 +11,6 @@ namespace LogicTest
         [Fact]
         public void Test1()
         {
-            var article = new ArticleDB();
-            var factory = new ArticlePrefactory(article);
-
-            var x = factory.CreateArticles();
-
-            var g = x[0];
-
-            Assert.Equal("Zivot savcu", g.Title);
         }
     }
 }
