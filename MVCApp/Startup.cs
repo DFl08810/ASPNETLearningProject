@@ -77,8 +77,8 @@ namespace MVCApp
 
             app.UseAuthorization();
 
-            cred.CreateRoles();
-            cred.CreateDefaultCredentials();
+            //cred.CreateRoles();
+            //cred.CreateDefaultCredentials();
 
             app.UseEndpoints(endpoints =>
             {
