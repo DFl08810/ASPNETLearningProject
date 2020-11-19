@@ -24,6 +24,7 @@ namespace MVCApp.Services
 
         public async void CreateDefaultCredentials()
         {
+            //define defaults
             #region makeAdmin
             var defaultAdmin = new User();
             defaultAdmin.UserName = "admin";
@@ -45,12 +46,16 @@ namespace MVCApp.Services
 
 
             #endregion
+
+            //create default credentials
             async Task UserCreate(User user, string defaultPassword, string role)
             {
+                //userManager is called to create desired default creds
                 IdentityResult chkUser = await _userManager.CreateAsync(user, defaultPassword);
 
                 if (chkUser.Succeeded)
                 {
+                    //assign roles to default
                     var result1 = await _userManager.AddToRoleAsync(user, role);
                 }
             }
