@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MVCApp.EntityServices;
 using MVCApp.Models.Factories;
+using MVCApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,7 @@ namespace MVCApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllersWithViews();
             #region PresentationServices
             services.AddTransient<IArticleModelFactory, ArticleModelFactory>();
@@ -52,10 +54,11 @@ namespace MVCApp
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<IdentityDataContext>();
             #endregion
+            services.AddTransient<ICredentialsService, CredentialsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ICredentialsService cred)
         {
             if (env.IsDevelopment())
             {
@@ -73,6 +76,9 @@ namespace MVCApp
             app.UseRouting();
 
             app.UseAuthorization();
+
+            cred.CreateRoles();
+            cred.CreateDefaultCredentials();
 
             app.UseEndpoints(endpoints =>
             {
