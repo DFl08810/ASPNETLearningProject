@@ -338,3 +338,8 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/DataCore/Migrations
+/DataCore/maindb.db
+/MVCApp/maindb.db
+/IdentityLib/Migrations
+/MVCApp/identity.db

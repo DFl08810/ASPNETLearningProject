@@ -1,0 +1,45 @@
+﻿@model MVCApp.Models.LoginModel
+
+@{
+    ViewData["Title"] = "View";
+}
+<div class="login-page form-page">
+    <h3 class="page-title">Login</h3>
+    <hr />
+
+    <div class="form-container">
+        <form class="form-content" asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-row">
+                <div class="form-group form-check">
+                    <label class="form-check-label justify-content-end">
+                        <input class="form-check-input" asp-for="RememberMe" /> @Html.DisplayNameFor(model => model.RememberMe)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-csmain" />
+                </div>
+            </div>
+            <div class="row" id="registrationLink">
+                <div>
+                    <a asp-action="Register">Request registration</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

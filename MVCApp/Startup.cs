@@ -2,14 +2,18 @@ using CommandCore.Factories;
 using CommandCore.Services;
 using DataCore;
 using DataCore.DataAccess;
+using IdentityLib;
+using IdentityLib.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MVCApp.EntityServices;
 using MVCApp.Models.Factories;
+using MVCApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +33,7 @@ namespace MVCApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllersWithViews();
             #region PresentationServices
             services.AddTransient<IArticleModelFactory, ArticleModelFactory>();
@@ -43,10 +48,17 @@ namespace MVCApp
             services.AddTransient<IArticleDataAccess, ArticleDataAccess>();
             services.AddTransient<IArticleDB, ArticleDbService>();
             #endregion
+            #region Identity
+            services.AddDbContext<IdentityDataContext>();
+            services.AddIdentity<User, IdentityRole>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<IdentityDataContext>();
+            #endregion
+            services.AddTransient<ICredentialsService, CredentialsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ICredentialsService cred)
         {
             if (env.IsDevelopment())
             {
@@ -63,7 +75,11 @@ namespace MVCApp
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
+
+            cred.InitializeDefaults();
 
             app.UseEndpoints(endpoints =>
             {
