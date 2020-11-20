@@ -5,16 +5,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="compilerconfig.json" />
     <Content Remove="wwwroot\ts\Control.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="compilerconfig.json" />
     <_ContentIncludedByDefault Remove="wwwroot\css\Main.css" />
     <_ContentIncludedByDefault Remove="wwwroot\css\Main.min.css" />
     <_ContentIncludedByDefault Remove="wwwroot\css\Main.scss" />
     <_ContentIncludedByDefault Remove="wwwroot\img\nodes.png" />
     <_ContentIncludedByDefault Remove="wwwroot\img\Separator.jpg" />
     <_ContentIncludedByDefault Remove="wwwroot\img\SeparatorDown.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
   </ItemGroup>
 
   <ItemGroup>

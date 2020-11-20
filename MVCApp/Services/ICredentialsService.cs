@@ -8,8 +8,8 @@ namespace MVCApp.Services
 {
     public interface ICredentialsService
     {
-        public Task<bool> ProcessLogin(AccountInputModel input);
-        public void CreateRoles();
-        public void CreateDefaultCredentials();
+        Task<bool> ProcessLogin(LoginModel input);
+        void InitializeDefaults();
+        Task<bool> MakeRegisterRequest(RegistrationModel registration);
     }
 }

@@ -22,7 +22,7 @@ namespace MVCApp.Services
             this._roleManager = roleManager;
         }
 
-        public async void CreateDefaultCredentials()
+        private async void CreateDefaultCredentials()
         {
             //define defaults
             #region makeAdmin
@@ -30,12 +30,14 @@ namespace MVCApp.Services
             defaultAdmin.UserName = "admin";
             defaultAdmin.Email = "admin@site.com";
             defaultAdmin.EmailConfirmed = true;
+            defaultAdmin.IsEnabled = true;
             string adminDefaultPassword = "Admin123*";
 
             var defaultUser = new User();
             defaultUser.UserName = "usertest";
             defaultUser.Email = "usertest@site.com";
             defaultUser.EmailConfirmed = true;
+            defaultUser.IsEnabled = true;
             string userDefaultPassword = "Usertest123*";
 
 
@@ -46,22 +48,9 @@ namespace MVCApp.Services
 
 
             #endregion
-
-            //create default credentials
-            async Task UserCreate(User user, string defaultPassword, string role)
-            {
-                //userManager is called to create desired default creds
-                IdentityResult chkUser = await _userManager.CreateAsync(user, defaultPassword);
-
-                if (chkUser.Succeeded)
-                {
-                    //assign roles to default
-                    var result1 = await _userManager.AddToRoleAsync(user, role);
-                }
-            }
         }
 
-        public async void CreateRoles()
+        private async void CreateDefaultRoles()
         {
             //Retrieves all roles from RoleDef static method
             var enumeratedRoles = RoleDef.EnumRoles();
@@ -81,8 +70,28 @@ namespace MVCApp.Services
             }
         }
 
-        public async Task<bool> ProcessLogin(AccountInputModel input)
+        public void InitializeDefaults()
         {
+            try
+            {
+                CreateDefaultRoles();
+                CreateDefaultCredentials();
+            }
+            catch(Exception e)
+            {
+                //TODO
+            }
+        }
+
+        public async Task<bool> ProcessLogin(LoginModel input)
+        {
+            //find user in db and check if user is enabled
+            var findUser = await _userManager.FindByNameAsync(input.UserName);
+            if(!findUser.IsEnabled)
+            {
+                //return false if user is enabled, login cannot be completed
+                return false;
+            }
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, set lockoutOnFailure: true
             var result = await _signInManager.PasswordSignInAsync(input.UserName, input.Password, input.RememberMe, lockoutOnFailure: false);
@@ -99,6 +108,34 @@ namespace MVCApp.Services
                 //return false if failed login
                 return false;
             }
+        }
+
+        public async Task<bool> MakeRegisterRequest(RegistrationModel registration)
+        {
+            var newUserRegistration = new User
+            {
+                UserName = registration.UserName,
+                Email = registration.Email,
+                IsEnabled = false
+            };
+
+            //call user create that returns true if creation is succcessfull
+            return await UserCreate(newUserRegistration, registration.Password, RoleDef.User);
+        }
+
+        private async Task<bool> UserCreate(User user, string password, string role)
+        {
+            //userManager is called to create desired default creds
+            IdentityResult chkUser = await _userManager.CreateAsync(user, password);
+
+            if (chkUser.Succeeded)
+            {
+                //assign roles to default
+                var result1 = await _userManager.AddToRoleAsync(user, role);
+                return true;
+            }
+            //false state means somethin went wrong
+            return false;
         }
     }
 }

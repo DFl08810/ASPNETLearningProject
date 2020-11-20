@@ -75,10 +75,11 @@ namespace MVCApp
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
-            //cred.CreateRoles();
-            //cred.CreateDefaultCredentials();
+
+            cred.InitializeDefaults();
 
             app.UseEndpoints(endpoints =>
             {

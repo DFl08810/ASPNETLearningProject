@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MVCApp.Models
 {
-    public class AccountInputModel
+    public class LoginModel
     {
 
             [Required]
