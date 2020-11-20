@@ -1,0 +1,46 @@
+﻿@model MVCApp.Models.RegistrationModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+<div class="register-page form-page">
+    <h3 class="page-title">Registration request</h3>
+    <hr />
+
+
+    <div class="form-container">
+        <form class="form-content" asp-action="Register">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" class="control-label"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegistrationMessage" class="control-label"></label>
+                <textarea asp-for="RegistrationMessage" class="form-control" cols="40" , rows="5"></textarea>
+                <span asp-validation-for="RegistrationMessage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Request registration" class="btn btn-csmain" />
+            </div>
+        </form>
+    </div>
+
+</div>
+

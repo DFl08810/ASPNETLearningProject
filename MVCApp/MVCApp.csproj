@@ -5,10 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="compilerconfig.json" />
     <Content Remove="wwwroot\ts\Control.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="compilerconfig.json" />
     <_ContentIncludedByDefault Remove="wwwroot\css\Main.css" />
     <_ContentIncludedByDefault Remove="wwwroot\css\Main.min.css" />
     <_ContentIncludedByDefault Remove="wwwroot\css\Main.scss" />
@@ -18,7 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CommandCore\CommandCore.csproj" />
+    <ProjectReference Include="..\IdentityLib\IdentityLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -181,6 +188,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
