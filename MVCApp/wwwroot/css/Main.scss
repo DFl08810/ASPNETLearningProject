@@ -1,13 +1,19 @@
 ﻿$color_multi: #006466;
 
+
+
 $color_dark: #1D2647;
+$color_light: #97BACA;
 $color_green: #3C9196;
-$color_beige: #EEE8CB;
-$color_yellow: #E7A838;
-$color_red: #D74726;
+$color_beige: #F4F4F4;
+$color_yellow: #F4AD48;
+$color_red: #DE6D5B;
+
 $color_greywhite: #d0d0d0;
+$color_greywhitest: #ebebeb;
 $color_grey: #808080;
 $color_blu: #4A4A91;
+$color_lightblu: #43818F;
 $color_lidark: rgba(36,46,81,1);
 
 $gradient: radial-gradient(circle, rgba(36,46,81,1) 0%, rgba(41,50,89,1) 0%, rgba(29,38,71,1) 73%);
@@ -93,12 +99,16 @@ $gradient: radial-gradient(circle, rgba(36,46,81,1) 0%, rgba(41,50,89,1) 0%, rgb
         font-weight: 500;
     }
 
+    .text-ligh:hover {
+        color: $color_red !important;
+    }
+
     .dropdown-menu {
         background: $gradient;
 
         @media (max-width: 576px) {
             background-color: transparent;
-            border:none;
+            border: none;
 
             .dropdown-item:hover {
                 background-color: transparent;
@@ -217,4 +227,24 @@ $gradient: radial-gradient(circle, rgba(36,46,81,1) 0%, rgba(41,50,89,1) 0%, rgb
     color: white;
 
     border: solid 1px $color_dark;
+}
+
+.admin-menu {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    background-color: $color_greywhitest;
+    border-bottom: 1px solid $color_dark;
+
+    .btn-admin {
+        margin: 0.4rem 0.6rem 0.4rem 0.6rem;
+        background-color: $color_lightblu;
+        border: 1px solid black;
+        font-weight: 500;
+    }
+
+    .btn-admin:hover {
+        background-color: $color_multi;
+        color: $color_greywhite;
+    }
 }
