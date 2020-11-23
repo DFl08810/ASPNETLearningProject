@@ -1,10 +1,12 @@
-﻿$(function () {
+﻿//This is utilized by bootstrap dropdowns, it changes the button text by selection
+$(function () {
 
-    $(".dropdown-menu a").click(function () {
+    $(".dropdown-menu a").click(function (e) {
 
-        $(".dropdown-toggle:first-child").text($(this).text());
-        $(".dropdown-toggle:first-child").val($(this).text());
+        var buttonId = e.target.parentElement.parentElement.getAttribute('id');
+        console.log(buttonId);
 
+        $(`#${buttonId} .btn`).text($(this).text());
     });
 
 });

@@ -1,0 +1,62 @@
+﻿body {
+  background-color: #d0dada; }
+
+.bg-admin {
+  background-color: #2C2D39; }
+
+.navbar-dark .navbar-brand {
+  color: #d0dada; }
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #d0dada !important;
+  font-weight: 500; }
+
+.navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link:active {
+  color: #ECAF3B !important; }
+
+.outline-dark {
+  border: 1px solid #6c757d; }
+
+.outline-green {
+  border: 1px solid #30B885; }
+
+.btn-left {
+  border-left: none;
+  border-bottom-left-radius: 0px !important;
+  border-top-left-radius: 0px !important; }
+
+.btn-right {
+  border-right: none;
+  border-bottom-right-radius: 0px !important;
+  border-top-right-radius: 0px !important; }
+
+.btn-green-inv {
+  color: #30B885;
+  background-color: #EBF2F2;
+  border-radius: 5px; }
+
+.btn-dark-inv {
+  color: #949797;
+  background-color: #EBF2F2;
+  border-radius: 5px; }
+
+.btn-green {
+  background-color: #30B885;
+  color: #EBF2F2;
+  border-radius: 5px; }
+
+.toolbox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  align-content: stretch; }
+
+.input-group {
+  width: auto;
+  margin: 0.5rem; }
+
+.table-card {
+  margin: 0.5rem 2rem 0.5rem 2rem;
+  border-radius: 15px; }

@@ -1,0 +1,90 @@
+﻿$color_dark: #2C2D39;
+$color_light: #EBF2F2;
+$color_grey: #6c757d;
+
+$color_blu: #87aadb;
+
+$color_yellow: #ECAF3B;
+$color_green: #30B885;
+$color_red: #f44336;
+
+$color_baselight: #d0dada;
+$color_basegrey: #949797;
+
+body {
+    background-color: $color_baselight;
+}
+
+.bg-admin {
+    background-color: $color_dark;
+}
+
+.navbar-dark {
+    .navbar-brand {
+        color: $color_baselight;
+    }
+
+    .navbar-nav {
+        .nav-link {
+            color: $color_baselight !important;
+            font-weight: 500;
+        }
+
+        .nav-link:hover, .nav-link:active {
+            color: $color_yellow !important;
+        }
+    }
+}
+
+.outline-dark {
+    border: 1px solid $color_grey;
+}
+.outline-green {
+    border: 1px solid $color_green;
+}
+.btn-left {
+    border-left: none;
+    border-bottom-left-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+}
+.btn-right {
+    border-right: none;
+    border-bottom-right-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+}
+.btn-green-inv{
+    color: $color_green;
+    background-color: $color_light;
+    border-radius: 5px;
+}
+
+.btn-dark-inv {
+    color: $color_basegrey;
+    background-color: $color_light;
+    border-radius: 5px;
+}
+
+.btn-green {
+    background-color: $color_green;
+    color: $color_light;
+    border-radius: 5px;
+}
+
+.toolbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    align-content: stretch;
+}
+
+.input-group {
+    width:auto ;
+    margin: 0.5rem;
+}
+
+.table-card {
+    margin: 0.5rem 2rem 0.5rem 2rem;
+    border-radius: 15px;
+}

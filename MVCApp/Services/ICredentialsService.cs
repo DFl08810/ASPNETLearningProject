@@ -1,4 +1,5 @@
-﻿using MVCApp.Models;
+﻿using IdentityLib.Models;
+using MVCApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace MVCApp.Services
         Task<bool> ProcessLogin(LoginModel input);
         void InitializeDefaults();
         Task<bool> MakeRegisterRequest(RegistrationModel registration);
+        Task<List<User>> RetrieveUsers();
     }
 }

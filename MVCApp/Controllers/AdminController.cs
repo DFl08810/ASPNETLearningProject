@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MVCApp.EntityServices;
+using MVCApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,14 @@ namespace MVCApp.Controllers
     {
         #region fields
         private IArticleService _articleService;
+        private readonly ICredentialsService _credentialsService;
         #endregion
         #region ctor
-        public AdminController(IArticleService articleService)
+        public AdminController(IArticleService articleService,
+                                ICredentialsService credentialsService)
         {
             this._articleService = articleService;
+            this._credentialsService = credentialsService;
         }
         #endregion
 
@@ -35,6 +39,7 @@ namespace MVCApp.Controllers
 
         public IActionResult Accounts()
         {
+            _credentialsService.RetrieveUsers();
             return View();
         }
 
