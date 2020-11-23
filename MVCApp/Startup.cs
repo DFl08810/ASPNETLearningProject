@@ -2,6 +2,7 @@ using CommandCore.Factories;
 using CommandCore.Services;
 using DataCore;
 using DataCore.DataAccess;
+using DataCore.Entities;
 using IdentityLib;
 using IdentityLib.Models;
 using Microsoft.AspNetCore.Builder;
@@ -45,7 +46,8 @@ namespace MVCApp
             #endregion
             #region DataServices
             services.AddDbContext<DataContext>();
-            services.AddTransient<IArticleDataAccess, ArticleDataAccess>();
+            services.AddTransient<IDataAccess<Article>, ArticleDataAccess>();
+            services.AddTransient<IDataAccess<Account>, AccountDataAccess>();
             services.AddTransient<IArticleDB, ArticleDbService>();
             #endregion
             #region Identity

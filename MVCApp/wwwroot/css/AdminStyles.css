@@ -14,6 +14,9 @@
 .navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link:active {
   color: #ECAF3B !important; }
 
+.fixed-width {
+  min-width: 7rem; }
+
 .outline-dark {
   border: 1px solid #6c757d; }
 
@@ -33,17 +36,20 @@
 .btn-green-inv {
   color: #30B885;
   background-color: #EBF2F2;
-  border-radius: 5px; }
+  border-radius: 5px;
+  font-weight: 500; }
 
 .btn-dark-inv {
   color: #949797;
   background-color: #EBF2F2;
-  border-radius: 5px; }
+  border-radius: 5px;
+  font-weight: 500; }
 
 .btn-green {
   background-color: #30B885;
   color: #EBF2F2;
-  border-radius: 5px; }
+  border-radius: 5px;
+  font-weight: 500; }
 
 .toolbox {
   display: flex;
@@ -51,7 +57,8 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: baseline;
-  align-content: stretch; }
+  align-content: stretch;
+  padding: 1rem 0 0.5rem 0; }
 
 .input-group {
   width: auto;
@@ -60,3 +67,12 @@
 .table-card {
   margin: 0.5rem 2rem 0.5rem 2rem;
   border-radius: 15px; }
+
+.btn-blue {
+  background-color: #87aadb;
+  color: #2C2D39;
+  border-radius: 5px;
+  font-weight: 500; }
+
+.btn-blue:hover {
+  color: #EBF2F2; }

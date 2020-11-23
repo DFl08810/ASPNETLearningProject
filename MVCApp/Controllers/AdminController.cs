@@ -43,5 +43,13 @@ namespace MVCApp.Controllers
             return View();
         }
 
+
+        public IActionResult Synchronize()
+        {
+            var usersFromIdentity = _credentialsService.RetrieveUsers().Result;
+            _
+
+            return View();
+        }
     }
 }

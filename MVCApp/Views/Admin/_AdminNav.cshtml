@@ -1,0 +1,67 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - River</title>
+    <script src="https://kit.fontawesome.com/24047c2f88.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/AdminStyles.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        #tooltip {
+            background-color: #333;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-admin">
+            <a class="navbar-brand" href="#">Admin panel</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-admin" asp-action="Accounts"><i class="fas fa-user"></i> Accounts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-admin" asp-action="Accounts"><i class="fas fa-book"></i> Articles</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div id="page-container">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer text-muted bg-light">
+        <div class="container footer-notice">
+            &copy; 2020 - River - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    //<script src="https://unpkg.com/@@popperjs/core@2/dist/umd/popper.js"></script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script src="~/js/Control.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

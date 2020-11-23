@@ -36,6 +36,10 @@ body {
     }
 }
 
+.fixed-width {
+    min-width: 7rem;
+}
+
 .outline-dark {
     border: 1px solid $color_grey;
 }
@@ -52,22 +56,25 @@ body {
     border-bottom-right-radius: 0px !important;
     border-top-right-radius: 0px !important;
 }
-.btn-green-inv{
+.btn-green-inv {
     color: $color_green;
     background-color: $color_light;
     border-radius: 5px;
+    font-weight: 500;
 }
 
 .btn-dark-inv {
     color: $color_basegrey;
     background-color: $color_light;
     border-radius: 5px;
+    font-weight: 500;
 }
 
 .btn-green {
     background-color: $color_green;
     color: $color_light;
     border-radius: 5px;
+    font-weight: 500;
 }
 
 .toolbox {
@@ -77,6 +84,7 @@ body {
     justify-content: center;
     align-items: baseline;
     align-content: stretch;
+    padding: 1rem 0 0.5rem 0;
 }
 
 .input-group {
@@ -87,4 +95,14 @@ body {
 .table-card {
     margin: 0.5rem 2rem 0.5rem 2rem;
     border-radius: 15px;
+}
+
+.btn-blue {
+    background-color: $color_blu;
+    color: $color_dark;
+    border-radius: 5px;
+    font-weight: 500;
+}
+.btn-blue:hover {
+    color: $color_light;
 }

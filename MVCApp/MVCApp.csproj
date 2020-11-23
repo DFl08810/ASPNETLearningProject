@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Content Remove="compilerconfig.json" />
+    <Content Remove="wwwroot\js\bundle.js" />
     <Content Remove="wwwroot\ts\Control.ts" />
   </ItemGroup>
 

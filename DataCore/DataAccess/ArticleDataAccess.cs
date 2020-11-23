@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataCore.DataAccess
 {
-    public class ArticleDataAccess : IArticleDataAccess
+    public class ArticleDataAccess : IDataAccess<Article>
     {
         private DataContext _db;
 
@@ -27,6 +27,12 @@ namespace DataCore.DataAccess
             return true;
         }
 
+        public bool SaveRange(IEnumerable<Article> articles)
+        {
+            _db.AddRange(articles);
+            return true;
+        }
+
         public int Commit()
         {
             return _db.SaveChanges();
@@ -37,7 +43,7 @@ namespace DataCore.DataAccess
             throw new NotImplementedException();
         }
 
-        public List<Article> SelectAll()
+        public IEnumerable<Article> SelectAll()
         {
             var queryResult = _db.Articles;
             return queryResult.ToList();
