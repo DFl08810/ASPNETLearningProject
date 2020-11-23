@@ -33,5 +33,10 @@ namespace MVCApp.Controllers
             return View(articles);
         }
 
+        public IActionResult Accounts()
+        {
+            return View();
+        }
+
     }
 }
