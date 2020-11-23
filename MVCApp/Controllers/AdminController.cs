@@ -14,14 +14,17 @@ namespace MVCApp.Controllers
     public class AdminController : Controller
     {
         #region fields
-        private IArticleService _articleService;
+        private IArticleModelService _articleService;
+        private readonly IAccountModelService _accountService;
         private readonly ICredentialsService _credentialsService;
         #endregion
         #region ctor
-        public AdminController(IArticleService articleService,
+        public AdminController(IArticleModelService articleService,
+                                IAccountModelService accountService,
                                 ICredentialsService credentialsService)
         {
             this._articleService = articleService;
+            this._accountService = accountService;
             this._credentialsService = credentialsService;
         }
         #endregion
@@ -39,17 +42,19 @@ namespace MVCApp.Controllers
 
         public IActionResult Accounts()
         {
-            _credentialsService.RetrieveUsers();
-            return View();
+            var accounts = _accountService.GetAllAccounts();
+            return View(accounts);
         }
 
 
         public IActionResult Synchronize()
         {
+            //retrieves all users in identity database
             var usersFromIdentity = _credentialsService.RetrieveUsers().Result;
-            _
 
-            return View();
+            //performs synchronization of all users registered in app
+            var resultAccounts = _accountService.Synchronize(usersFromIdentity);
+            return View("Accounts", resultAccounts);
         }
     }
 }

@@ -38,11 +38,15 @@ namespace MVCApp
             services.AddControllersWithViews();
             #region PresentationServices
             services.AddTransient<IArticleModelFactory, ArticleModelFactory>();
-            services.AddTransient<IArticleService, ArticleService>();
+            services.AddTransient<IArticleModelService, ArticleModelService>();
+            services.AddTransient<IAccountModelFactory, AccountModelFactory>();
+            services.AddTransient<IAccountModelService, AccountModelService>();
             #endregion
             #region CommandServices
             services.AddTransient<IArticlePrefactory, ArticlePrefactory>();
             services.AddTransient<IPublishingService, PublishingService>();
+            services.AddTransient<IAccountFactory, AccountFactory>();
+            services.AddTransient<IAccountService, AccountService>();
             #endregion
             #region DataServices
             services.AddDbContext<DataContext>();

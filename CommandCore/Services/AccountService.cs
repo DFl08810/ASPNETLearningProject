@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CommandCore.Services
 {
-    public class AccountService
+    public class AccountService : IAccountService
     {
         private readonly IDataAccess<Account> _accountDbAccess;
 
@@ -17,10 +17,20 @@ namespace CommandCore.Services
             this._accountDbAccess = accountDbAccess;
         }
 
-        public bool Synchronize(IEnumerable<Account> accounts)
-        {
 
-            return true;
+        public IEnumerable<Account> Synchronize(List<Account> accounts)
+        {
+            //Get current content from account table
+
+            var accountsDbContent = _accountDbAccess.SelectAll();
+            //empty database is filled with data from identity
+            if(!accountsDbContent.Any())
+            {
+                _accountDbAccess.SaveRange(accounts);
+                _accountDbAccess.Commit();
+                return accounts;
+            }
+            return accounts;
         }
     }
 }

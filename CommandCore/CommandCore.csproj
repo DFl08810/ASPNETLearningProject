@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataCore\DataCore.csproj" />
+    <ProjectReference Include="..\IdentityLib\IdentityLib.csproj" />
   </ItemGroup>
 
 </Project>
