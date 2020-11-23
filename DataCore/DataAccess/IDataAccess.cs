@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace DataCore.DataAccess
 {
-    public interface IArticleDataAccess
+    public interface IDataAccess<T>
+        where T : class
     {
-        Article SelectById(int id);
-        List<Article> SelectAll();
-        bool Save(Article article);
+        T SelectById(int id);
+        IEnumerable<T> SelectAll();
+        bool Save(T obj);
+        bool SaveRange(IEnumerable<T> obj);
         int Commit();
     }
 }

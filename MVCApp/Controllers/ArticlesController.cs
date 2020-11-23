@@ -11,10 +11,10 @@ namespace MVCApp.Controllers
     public class ArticlesController : Controller
     {
         #region fields
-        private IArticleService _articleService;
+        private IArticleModelService _articleService;
         #endregion
         #region ctor
-        public ArticlesController(IArticleService articleService)
+        public ArticlesController(IArticleModelService articleService)
         {
             this._articleService = articleService;
         }

@@ -137,5 +137,11 @@ namespace MVCApp.Services
             //false state means somethin went wrong
             return false;
         }
+
+        public async Task<List<User>> RetrieveUsers()
+        {
+            var users = _userManager.Users;
+            return users.ToList();
+        }
     }
 }

@@ -1,0 +1,142 @@
+﻿@model IEnumerable<MVCApp.Models.AccountModel>
+@{
+    ViewData["Title"] = "Admin - Accounts";
+    Layout = "~/Views/Admin/_AdminNav.cshtml";
+}
+
+<div class="toolbox">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <button class="btn btn-dark-inv outline-dark btn-right" type="button">Sort by:</button>
+        </div>
+        <div class="dropdown" id="SortByDropdown">
+            <button class="btn btn-toggle btn-green outline-dark btn-left fixed-width dropdown-toggle" type="button" id="SortButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Date ascending
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Date ascending</a>
+                <a class="dropdown-item" href="#">Date descending</a>
+                <a class="dropdown-item" href="#">Name ascending</a>
+                <a class="dropdown-item" href="#">Name descending</a>
+                <a class="dropdown-item" href="#">Role</a>
+            </div>
+        </div>
+    </div>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <button class="btn btn-dark-inv outline-dark btn-right" type="button">Role:</button>
+        </div>
+        <div class="dropdown" id="RoleDropdown">
+            <button class="btn btn-toggle btn-green outline-dark btn-left fixed-width dropdown-toggle" type="button" id="Role" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Administrator
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Administrator</a>
+                <a class="dropdown-item" href="#">User</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <button class="btn btn-dark-inv outline-dark btn-right" type="button">Account Status:</button>
+        </div>
+        <div class="dropdown" id="StatusDropdown">
+            <button class="btn btn-toggle btn-green outline-dark btn-left fixed-width dropdown-toggle" type="button" id="Status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                All
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">All</a>
+                <a class="dropdown-item" href="#">Enabled</a>
+                <a class="dropdown-item" href="#">Disabled</a>
+                <a class="dropdown-item" href="#">Removed</a>
+            </div>
+        </div>
+    </div>
+    <div class="input-group">
+        <button type="button" class="btn btn-blue outline-dark" data-toggle="tooltip" data-placement="top" title="Sync app and identity db tables">
+            Sync
+        </button>
+    </div>
+
+    <div class="input-group">
+        <input type="text" class="form-control outline-dark btn-right" placeholder="Search query e.g. 'Jim'" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card table-card">
+    <div class="table-responsive table-borderless">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Registered)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LastLogin)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NoOfComments)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NoOfArticles)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Registered)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastLogin)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NoOfComments)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NoOfArticles)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

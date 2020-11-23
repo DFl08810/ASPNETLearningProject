@@ -42,7 +42,7 @@
   background: radial-gradient(circle, #242e51 0%, #293259 0%, #1d2647 73%); }
 
 .footer-notice {
-  color: #EEE8CB;
+  color: #F4F4F4;
   font-size: 18px; }
   .footer-notice a {
     color: #3C9196; }
@@ -50,11 +50,13 @@
 .navbar {
   padding: 0.25rem 1rem !important; }
   .navbar .navbar-brand {
-    color: #EEE8CB;
+    color: #F4F4F4;
     font-weight: 500; }
   .navbar .text-light {
-    color: #EEE8CB !important;
+    color: #F4F4F4 !important;
     font-weight: 500; }
+  .navbar .text-ligh:hover {
+    color: #DE6D5B !important; }
   .navbar .dropdown-menu {
     background: radial-gradient(circle, #242e51 0%, #293259 0%, #1d2647 73%); }
     @media (max-width: 576px) {
@@ -147,3 +149,18 @@
   background-color: #242e51;
   color: white;
   border: solid 1px #1D2647; }
+
+.admin-menu {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  background-color: #ebebeb;
+  border-bottom: 1px solid #1D2647; }
+  .admin-menu .btn-admin {
+    margin: 0.4rem 0.6rem 0.4rem 0.6rem;
+    background-color: #43818F;
+    border: 1px solid black;
+    font-weight: 500; }
+  .admin-menu .btn-admin:hover {
+    background-color: #006466;
+    color: #d0d0d0; }
