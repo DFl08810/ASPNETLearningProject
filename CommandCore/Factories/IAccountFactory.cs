@@ -13,5 +13,6 @@ namespace CommandCore.Factories
         List<Account> ConstructAccounts(List<User> users);
 
         List<Account> ConstructFromDb();
+        List<Account> ConstructMatching(string matchString);
     }
 }

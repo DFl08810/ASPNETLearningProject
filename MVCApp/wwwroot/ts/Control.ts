@@ -10,3 +10,27 @@ $(function () {
     });
 
 });
+
+
+//Searchbar script
+$("#SearchButton").click(function (event) {
+    //get id of parent container
+    var buttonId = event.target.parentElement.parentElement.getAttribute('id');
+    //get value of input field
+    var query = $(`#${buttonId} input`).val();
+    console.log(query);
+    //JQuey AJAX call to SearchUser(string searchQuery) method in admin controller
+    $.ajax('/Admin/SearchUser', {
+        type: 'GET',  // http method
+        //define content type for expected data
+        contentType: 'application/x-www-form-urlencoded',
+        data: { searchQuery: query },  // data to submit
+        success: function (data, status, xhr) {
+            $('.table-card').empty();
+            $('.table-card').append(data);
+        },
+        error: function (jqXhr, textStatus, errorMessage) {
+            $('p').append('Error' + errorMessage);
+        }
+    });
+});
