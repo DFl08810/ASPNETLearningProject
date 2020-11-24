@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MVCApp.EntityServices;
+using MVCApp.Models;
 using MVCApp.Services;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace MVCApp.Controllers
         private IArticleModelService _articleService;
         private readonly IAccountModelService _accountService;
         private readonly ICredentialsService _credentialsService;
+
         #endregion
         #region ctor
         public AdminController(IArticleModelService articleService,
@@ -55,6 +57,14 @@ namespace MVCApp.Controllers
             //performs synchronization of all users registered in app
             var resultAccounts = _accountService.Synchronize(usersFromIdentity);
             return View("Accounts", resultAccounts);
+        }
+
+        [HttpGet]
+        public IActionResult SearchUser(string searchQuery)
+        {
+            var resultAccounts = _accountService.GetMatchingAccounts(searchQuery);
+
+            return PartialView("_AccountsPartial", resultAccounts);
         }
     }
 }

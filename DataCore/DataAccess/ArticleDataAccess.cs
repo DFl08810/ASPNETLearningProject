@@ -48,5 +48,10 @@ namespace DataCore.DataAccess
             var queryResult = _db.Articles;
             return queryResult.ToList();
         }
+
+        public IEnumerable<Article> MatchByString(string matchString)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

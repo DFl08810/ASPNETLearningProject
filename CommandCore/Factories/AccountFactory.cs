@@ -41,5 +41,11 @@ namespace CommandCore.Factories
 
             return accounts.ToList();
         }
+
+        public List<Account> ConstructMatching(string matchString)
+        {
+            var matchedAccounts = _dataAccess.MatchByString(matchString);
+            return matchedAccounts.ToList();
+        }
     }
 }

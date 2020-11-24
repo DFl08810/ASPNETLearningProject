@@ -14,6 +14,7 @@ namespace DataCore.DataAccess
         IEnumerable<T> SelectAll();
         bool Save(T obj);
         bool SaveRange(IEnumerable<T> obj);
+        IEnumerable<T> MatchByString(string matchString);
         int Commit();
     }
 }

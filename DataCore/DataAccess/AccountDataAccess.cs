@@ -28,6 +28,13 @@ namespace DataCore.DataAccess
             return 1;
         }
 
+        public IEnumerable<Account> MatchByString(string matchString)
+        {
+            //Using simple linq query with OR logic statement to find all matching elements
+            var queryResult = _db.Accounts.Where(item => item.Name.Contains(matchString) || item.Email.Contains(matchString));
+            return queryResult;
+        }
+
         public bool Save(Account article)
         {
             _db.Add(article);

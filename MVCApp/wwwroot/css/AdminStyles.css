@@ -76,3 +76,30 @@
 
 .btn-blue:hover {
   color: #EBF2F2; }
+
+.fa-check {
+  color: #30B885; }
+
+.fa-times {
+  color: #f44336; }
+
+.fa-pen {
+  color: #30B885; }
+
+.fa-user-cog {
+  color: #ECAF3B; }
+
+.fa-trash-alt {
+  color: #f44336; }
+
+tr td a .fas {
+  padding: 0, 0.125rem 0 0.125rem; }
+
+tr td table-symbol {
+  margin: auto; }
+
+tr td .fa-check {
+  color: #30B885; }
+
+tr td .fa-times {
+  color: #f44336; }

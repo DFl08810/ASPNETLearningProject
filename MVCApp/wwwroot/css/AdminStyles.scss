@@ -106,3 +106,43 @@ body {
 .btn-blue:hover {
     color: $color_light;
 }
+
+.fa-check {
+    color: $color_green;
+}
+
+.fa-times {
+    color: $color_red;
+}
+
+.fa-pen {
+    color: $color_green;
+}
+.fa-user-cog {
+    color: $color_yellow;
+}
+.fa-trash-alt {
+    color: $color_red;
+}
+tr {
+    td {
+        a {
+
+                .fas {
+                    padding: 0, 0.125rem 0 0.125rem;
+                }
+
+        }
+        table-symbol {
+            margin: auto;
+        }
+
+        .fa-check {
+            color: $color_green;
+        }
+
+        .fa-times {
+            color: $color_red;
+        }
+    }
+}
