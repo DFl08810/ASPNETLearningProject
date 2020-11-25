@@ -49,13 +49,28 @@ namespace DataCore.DataAccess
 
         public IEnumerable<Account> SelectAll()
         {
-            var queryResult = _db.Accounts;
+            var queryResult = _db.Accounts.AsNoTracking();
             return queryResult.ToList();
         }
 
         public Account SelectById(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public bool UpdateRange(IEnumerable<Account> obj)
+        {
+            //_db.Entry(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            try
+            {
+                _db.UpdateRange(obj);
+            }
+            catch (Exception exc)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
