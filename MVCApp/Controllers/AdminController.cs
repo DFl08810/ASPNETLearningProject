@@ -66,5 +66,14 @@ namespace MVCApp.Controllers
 
             return PartialView("_AccountsPartial", resultAccounts);
         }
+
+        [HttpGet]
+        public IActionResult SortBy(string sortMode) 
+        {
+            //sort and  return
+            //if sortMode is null, no mode is tripped and unsorted list is returned
+            var result = _accountService.SortAllAccounts(sortMode);
+            return PartialView("_AccountsPartial", result);
+        }
     }
 }

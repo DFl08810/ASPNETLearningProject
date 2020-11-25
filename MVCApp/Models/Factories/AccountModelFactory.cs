@@ -15,6 +15,7 @@ namespace MVCApp.Models.Factories
             return new AccountModel
             {
                 Id = accountEnt.Id,
+                Role = accountEnt.Role,
                 Email = accountEnt.Email,
                 LastLogin = accountEnt.LastLogin,
                 Name = accountEnt.Name,

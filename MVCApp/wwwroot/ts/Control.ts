@@ -7,9 +7,38 @@ $(function () {
         console.log(buttonId);
 
         $(`#${buttonId} .btn`).text($(this).text());
+        //
     });
 
 });
+//gets selected value from sort dropdown and calls semi abstracted ajax func 
+$(function () {
+    $(".sort-dropdown a").click(function (e) {
+        var test = $(this).attr('val');
+        var dataObj = { sortMode: test }
+        var target = "SortBy";
+        CallTarget(dataObj, target);
+    });
+
+});
+//semi abstracted ajax call for admin controller
+function CallTarget(dataObject, target: string) {
+    $.ajax(`/Admin/${target}`, {
+        type: 'GET',  // http method
+        //define content type for expected data
+        contentType: 'application/x-www-form-urlencoded',
+        data: dataObject,  // data to submit
+        success: function (data, status, xhr) {
+            //remove content of card
+            $('.table-card').empty();
+            //append partial view
+            $('.table-card').append(data);
+        },
+        error: function (jqXhr, textStatus, errorMessage) {
+            $('p').append('Error' + errorMessage);
+        }
+    });
+}
 
 
 //Searchbar script

@@ -4,8 +4,36 @@ $(function () {
         var buttonId = e.target.parentElement.parentElement.getAttribute('id');
         console.log(buttonId);
         $(`#${buttonId} .btn`).text($(this).text());
+        //
     });
 });
+//gets selected value from sort dropdown and calls semi abstracted ajax func 
+$(function () {
+    $(".sort-dropdown a").click(function (e) {
+        var test = $(this).attr('val');
+        var dataObj = { sortMode: test };
+        var target = "SortBy";
+        CallTarget(dataObj, target);
+    });
+});
+//semi abstracted ajax call for admin controller
+function CallTarget(dataObject, target) {
+    $.ajax(`/Admin/${target}`, {
+        type: 'GET',
+        //define content type for expected data
+        contentType: 'application/x-www-form-urlencoded',
+        data: dataObject,
+        success: function (data, status, xhr) {
+            //remove content of card
+            $('.table-card').empty();
+            //append partial view
+            $('.table-card').append(data);
+        },
+        error: function (jqXhr, textStatus, errorMessage) {
+            $('p').append('Error' + errorMessage);
+        }
+    });
+}
 //Searchbar script
 $("#SearchButton").click(function (event) {
     //get id of parent container
