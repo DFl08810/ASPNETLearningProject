@@ -1,6 +1,7 @@
 ﻿using DataCore.DataAccess;
 using DataCore.Entities;
 using IdentityLib.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace CommandCore.Factories
                 {
                     Email = user.Email,
                     Name = user.UserName,
-                    Status = user.IsEnabled,
+                    Status = user.IsEnabled
                 };
                 accountModels.Add(account);
             }
