@@ -12,6 +12,6 @@ namespace MVCApp.Models.Factories
     {
         AccountModel GetAccountModel(Account accountEnt);
         List<AccountModel> GetAccountModels(List<Account> accountEnts);
-        List<AccountModel> GetAccountModels(List<User> users);
+        List<AccountModel> GetAccountModels(List<User> users, bool isNew = false);
     }
 }

@@ -71,5 +71,10 @@ namespace DataCore.DataAccess
 
             return true;
         }
+
+        public bool RemoveRange(IEnumerable<Article> obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

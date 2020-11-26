@@ -80,7 +80,6 @@ namespace MVCApp.Services
             var accountSynced = _accountService.Synchronize(acountEntities);
             var result = _accountModelFactory.GetAccountModels(accountSynced.ToList());
  
-
             return result;
         }
     }

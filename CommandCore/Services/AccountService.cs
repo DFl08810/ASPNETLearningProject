@@ -17,6 +17,12 @@ namespace CommandCore.Services
             this._accountDbAccess = accountDbAccess;
         }
 
+        public IEnumerable<Account> SaveRange(List<Account> accounts)
+        {
+            _accountDbAccess.SaveRange(accounts);
+            _accountDbAccess.Commit();
+            return accounts;
+        }
 
         public IEnumerable<Account> Synchronize(List<Account> accounts)
         {
@@ -54,6 +60,17 @@ namespace CommandCore.Services
                 _accountDbAccess.SaveRange(difference);
                 _accountDbAccess.Commit();
             }
+            if(accounts.Count() < accountsDbContent.Count())
+            {
+                //returns all elements from app db that are not in accounts from identity
+                var difference = accountsDbContent.Where(a => !accounts.Any(b => b.Email == a.Email)).ToList();
+                _accountDbAccess.RemoveRange(difference);
+                _accountDbAccess.Commit();
+                var x = 0;
+                //something shoulg get here
+            }
+
+
 
             //Method that assigns ids to accounts so EF Core can apply modify state
             List<Account>  MakeAttacheble(IEnumerable<Account> foreignAccounts, IEnumerable<Account> attachableAccounts)

@@ -1,6 +1,9 @@
-﻿using IdentityLib.Models;
+﻿using CommandCore.Factories;
+using CommandCore.Services;
+using IdentityLib.Models;
 using Microsoft.AspNetCore.Identity;
 using MVCApp.Models;
+using MVCApp.Models.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +16,20 @@ namespace MVCApp.Services
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IAccountService _accountService;
+        private readonly IAccountFactory _accountFactory;
+
         public CredentialsService(UserManager<User> userManager,
                                 SignInManager<User> signInManager,
-                                RoleManager<IdentityRole> roleManager)
+                                RoleManager<IdentityRole> roleManager,
+                                IAccountService accountService,
+                                IAccountFactory accountFactory)
         {
             this._userManager = userManager;
             this._signInManager = signInManager;
             this._roleManager = roleManager;
+            this._accountService = accountService;
+            this._accountFactory = accountFactory;
         }
 
         private async void CreateDefaultCredentials()
@@ -27,22 +37,22 @@ namespace MVCApp.Services
             //define defaults
             #region makeAdmin
             var defaultAdmin = new User();
-            defaultAdmin.UserName = "admin";
+            defaultAdmin.UserName = "Admin";
             defaultAdmin.Email = "admin@site.com";
             defaultAdmin.EmailConfirmed = true;
             defaultAdmin.IsEnabled = true;
             string adminDefaultPassword = "Admin123*";
 
             var defaultUser = new User();
-            defaultUser.UserName = "usertest";
+            defaultUser.UserName = "Usertest";
             defaultUser.Email = "usertest@site.com";
             defaultUser.EmailConfirmed = true;
             defaultUser.IsEnabled = true;
             string userDefaultPassword = "Usertest123*";
 
 
-            await UserCreate(defaultAdmin, adminDefaultPassword, RoleDef.Admin);
-            await UserCreate(defaultUser, userDefaultPassword, RoleDef.User);
+            await UserCreate(defaultAdmin, adminDefaultPassword, RoleDef.Admin, true);
+            await UserCreate(defaultUser, userDefaultPassword, RoleDef.User, true);
             #endregion
             #region makeTestUser
 
@@ -110,7 +120,7 @@ namespace MVCApp.Services
             }
         }
 
-        public async Task<bool> MakeRegisterRequest(RegistrationModel registration)
+        public async Task<bool> MakeRegisterRequest(RegistrationModel registration, bool isDefault = false)
         {
             var newUserRegistration = new User
             {
@@ -120,10 +130,10 @@ namespace MVCApp.Services
             };
 
             //call user create that returns true if creation is succcessfull
-            return await UserCreate(newUserRegistration, registration.Password, RoleDef.User);
+            return await UserCreate(newUserRegistration, registration.Password, RoleDef.User, isDefault);
         }
 
-        private async Task<bool> UserCreate(User user, string password, string role)
+        private async Task<bool> UserCreate(User user, string password, string role, bool isDefault = false)
         {
             //userManager is called to create desired default creds
             IdentityResult chkUser = await _userManager.CreateAsync(user, password);
@@ -131,11 +141,27 @@ namespace MVCApp.Services
             if (chkUser.Succeeded)
             {
                 //assign roles to default
-                var result1 = await _userManager.AddToRoleAsync(user, role);
+                var chkRole = await _userManager.AddToRoleAsync(user, role);
+                //check for role assignment
+                if (chkRole.Succeeded)
+                {
+                    //create list from user and pass it to main app database
+                    AssingNewUserToAppDb(new List<User> { user }, isDefault);
+                    
+                }
                 return true;
             }
             //false state means somethin went wrong
             return false;
+        }
+
+        //create record for new user in local app db separate from identity db
+        private bool AssingNewUserToAppDb(List<User> users, bool isDefault = false)
+        {
+            //set optional isNew parameter to true, so factory can assing pending acceptation flag to account
+            var accountModels = _accountFactory.ConstructAccounts(users, true, isDefault);
+            _accountService.SaveRange(accountModels);
+            return true;
         }
 
         public async Task<List<User>> RetrieveUsers()

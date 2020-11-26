@@ -30,7 +30,8 @@ namespace MVCApp.Models.Factories
                 NoOfArticles = accountEnt.NoOfArticles,
                 NoOfComments = accountEnt.NoOfComments,
                 Registered = accountEnt.Registered,
-                Status = accountEnt.Status
+                Status = accountEnt.Status,
+                IsPending = accountEnt.IsPending
             };
         }
 
@@ -45,7 +46,7 @@ namespace MVCApp.Models.Factories
             return accounts;
         }
 
-        public List<AccountModel> GetAccountModels(List<User> users)
+        public List<AccountModel> GetAccountModels(List<User> users, bool isNew = false)
         {
             var accountModels = new List<AccountModel>();
             foreach(var user in users)
@@ -54,8 +55,14 @@ namespace MVCApp.Models.Factories
                     Email = user.Email,
                     Name = user.UserName,
                     Status = user.IsEnabled,
-                    Role = _userMan.GetRolesAsync(user).Result.FirstOrDefault()
+                    Role = _userMan.GetRolesAsync(user).Result.FirstOrDefault(),
+                    IsPending = false
                 };
+                //if user is new set pending acceptation request
+                if (isNew)
+                {
+                    account.IsPending = true;
+                }
                 accountModels.Add(account);
             }
 

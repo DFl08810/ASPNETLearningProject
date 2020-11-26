@@ -9,6 +9,7 @@ namespace DataCore.Entities
         public int Id { get; set; }
         public string Role { get; set; }
         public bool Status { get; set; }
+        public bool IsPending { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public DateTime Registered { get; set; }

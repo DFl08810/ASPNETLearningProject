@@ -4,6 +4,7 @@ using IdentityLib.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace CommandCore.Factories
             this._userMan = userManager;
         }
 
-        public List<Account> ConstructAccounts(List<User> users)
+        public List<Account> ConstructAccounts(List<User> users, bool isNew = false, bool isDefault = false)
         {
             var accountModels = new List<Account>();
             foreach (var user in users)
@@ -31,8 +32,15 @@ namespace CommandCore.Factories
                     Email = user.Email,
                     Name = user.UserName,
                     Status = user.IsEnabled,
-                    Role = _userMan.GetRolesAsync(user).Result.FirstOrDefault()
+                    Registered = DateTime.Now,
+                    Role = _userMan.GetRolesAsync(user).Result.FirstOrDefault(),
+                    IsPending = false
                 };
+                //if user is new set pending acceptation request
+                if (isNew && !isDefault)
+                {
+                    account.IsPending = true;
+                }
                 accountModels.Add(account);
             }
 

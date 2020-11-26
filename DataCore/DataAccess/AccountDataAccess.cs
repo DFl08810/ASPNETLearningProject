@@ -35,6 +35,12 @@ namespace DataCore.DataAccess
             return queryResult;
         }
 
+        public bool RemoveRange(IEnumerable<Account> obj)
+        {
+            _db.RemoveRange(obj);
+            return true;
+        }
+
         public bool Save(Account article)
         {
             _db.Add(article);
