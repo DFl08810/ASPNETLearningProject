@@ -52,6 +52,7 @@ namespace MVCApp.Controllers
         public IActionResult Synchronize()
         {
             //retrieves all users in identity database
+            
             var usersFromIdentity = _credentialsService.RetrieveUsers().Result;
 
             //performs synchronization of all users registered in app

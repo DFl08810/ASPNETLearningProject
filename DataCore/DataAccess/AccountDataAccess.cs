@@ -49,7 +49,7 @@ namespace DataCore.DataAccess
 
         public IEnumerable<Account> SelectAll()
         {
-            var queryResult = _db.Accounts.AsNoTracking();
+            var queryResult = _db.Accounts;
             return queryResult.ToList();
         }
 
@@ -63,6 +63,8 @@ namespace DataCore.DataAccess
             //_db.Entry(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             try
             {
+                _db.Accounts.AttachRange(obj);
+                _db.Entry(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 _db.UpdateRange(obj);
             }
             catch (Exception exc)

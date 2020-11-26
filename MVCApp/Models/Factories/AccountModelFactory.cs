@@ -1,6 +1,7 @@
 ﻿using CommandCore.Prefabs;
 using DataCore.Entities;
 using IdentityLib.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,13 @@ namespace MVCApp.Models.Factories
 {
     public class AccountModelFactory : IAccountModelFactory
     {
+        private readonly UserManager<User> _userMan;
+
+        public AccountModelFactory(UserManager<User> userManager)
+        {
+            this._userMan = userManager;
+        }
+
         public AccountModel GetAccountModel(Account accountEnt)
         {
             return new AccountModel
@@ -46,6 +54,7 @@ namespace MVCApp.Models.Factories
                     Email = user.Email,
                     Name = user.UserName,
                     Status = user.IsEnabled,
+                    Role = _userMan.GetRolesAsync(user).Result.FirstOrDefault()
                 };
                 accountModels.Add(account);
             }

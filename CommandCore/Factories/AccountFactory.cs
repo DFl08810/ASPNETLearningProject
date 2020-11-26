@@ -13,10 +13,12 @@ namespace CommandCore.Factories
     public class AccountFactory : IAccountFactory
     {
         private readonly IDataAccess<Account> _dataAccess;
+        private readonly UserManager<User> _userMan;
 
-        public AccountFactory(IDataAccess<Account> dataAccess)
+        public AccountFactory(IDataAccess<Account> dataAccess, UserManager<User> userManager)
         {
             this._dataAccess = dataAccess;
+            this._userMan = userManager;
         }
 
         public List<Account> ConstructAccounts(List<User> users)
@@ -28,7 +30,8 @@ namespace CommandCore.Factories
                 {
                     Email = user.Email,
                     Name = user.UserName,
-                    Status = user.IsEnabled
+                    Status = user.IsEnabled,
+                    Role = _userMan.GetRolesAsync(user).Result.FirstOrDefault()
                 };
                 accountModels.Add(account);
             }
