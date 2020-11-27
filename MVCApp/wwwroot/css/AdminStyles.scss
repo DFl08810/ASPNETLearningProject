@@ -124,15 +124,22 @@ body {
 .fa-trash-alt {
     color: $color_red;
 }
+
+.fa-clock {
+    color: $color_yellow;
+}
+.fa-caret-square-right {
+    color: $color_blu;
+}
 tr {
     td {
         a {
 
-                .fas {
-                    padding: 0, 0.125rem 0 0.125rem;
-                }
-
+            .fas {
+                padding: 0, 0.125rem 0 0.125rem;
+            }
         }
+
         table-symbol {
             margin: auto;
         }
@@ -143,6 +150,10 @@ tr {
 
         .fa-times {
             color: $color_red;
+        }
+
+        .fa-clock {
+            color: $color_yellow;
         }
     }
 }

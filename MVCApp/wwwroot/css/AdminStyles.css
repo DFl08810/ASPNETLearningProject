@@ -92,6 +92,12 @@
 .fa-trash-alt {
   color: #f44336; }
 
+.fa-clock {
+  color: #ECAF3B; }
+
+.fa-caret-square-right {
+  color: #87aadb; }
+
 tr td a .fas {
   padding: 0, 0.125rem 0 0.125rem; }
 
@@ -103,3 +109,6 @@ tr td .fa-check {
 
 tr td .fa-times {
   color: #f44336; }
+
+tr td .fa-clock {
+  color: #ECAF3B; }
