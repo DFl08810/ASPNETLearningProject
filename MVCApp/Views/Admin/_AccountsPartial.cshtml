@@ -14,6 +14,9 @@
                     @Html.DisplayNameFor(model => model.Email)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.Role)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Registered)
                 </th>
                 <th>
@@ -31,46 +34,49 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @if (item.Status)
-                        {
-                            <i class="fas fa-check table-symbol"></i>
-                        }
-                        else if (item.IsPending)
-                        {
-                            <i class="fas fa-clock table-symbol"></i>
-                        }
-                        else if(!item.Status)
-                        {
-                            <i class="fas fa-times table-symbol"></i>
-                        }
+            <tr class="accounts">
+                <td class="status">
+                    @if (item.Status)
+                    {
+                        <i class="fas fa-check table-symbol" val="Enabled"></i>
+                    }
+                    else if (item.IsPending)
+                    {
+                        <i class="fas fa-clock table-symbol" val="Pending"></i>
+                    }
+                    else if (!item.Status)
+                    {
+                        <i class="fas fa-times table-symbol" val="Disabled"></i>
+                    }
 
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Registered)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastLogin)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NoOfComments)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NoOfArticles)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-pen"></i></a>
-                        <a asp-action="Detail" asp-route-id="@item.Id"><i class="fas fa-user-cog"></i></a>
-                        <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></a>
-                    </td>
-                </tr>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td class="role" val="@item.Role">
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Registered)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastLogin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NoOfComments)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NoOfArticles)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-pen"></i></a>
+                    <a asp-action="Detail" asp-route-id="@item.Id"><i class="fas fa-user-cog"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

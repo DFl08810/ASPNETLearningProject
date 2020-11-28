@@ -11,13 +11,13 @@
         </div>
         <div class="dropdown" id="SortByDropdown">
             <button class="btn btn-toggle btn-green outline-dark btn-left fixed-width dropdown-toggle" type="button" id="SortButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Date ascending
+                Register date ascending
             </button>
             <div class="dropdown-menu sort-dropdown" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#" val="nameAsc">Name ascending</a>
                 <a class="dropdown-item" href="#" val="nameDesc">Name descending</a>
                 <a class="dropdown-item" href="#" val="regDateAsc">Register date ascending</a>
-                <a class="dropdown-item" href="#" val="regDateDesc">Register descending</a>
+                <a class="dropdown-item" href="#" val="regDateDesc">Register date descending</a>
                 <a class="dropdown-item" href="#" val="logDateAsc">Login date ascending</a>
                 <a class="dropdown-item" href="#" val="logDateDesc">Login date descending</a>
             </div>
@@ -29,11 +29,12 @@
         </div>
         <div class="dropdown" id="RoleDropdown">
             <button class="btn btn-toggle btn-green outline-dark btn-left fixed-width dropdown-toggle" type="button" id="Role" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Administrator
+                All
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Administrator</a>
-                <a class="dropdown-item" href="#">User</a>
+            <div class="dropdown-menu role-dropdown" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#" val="All">All</a>
+                <a class="dropdown-item" href="#" val="Admin">Administrator</a>
+                <a class="dropdown-item" href="#" val="User">User</a>
             </div>
         </div>
     </div>
@@ -46,11 +47,11 @@
             <button class="btn btn-toggle btn-green outline-dark btn-left fixed-width dropdown-toggle" type="button" id="Status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 All
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">All</a>
-                <a class="dropdown-item" href="#">Enabled</a>
-                <a class="dropdown-item" href="#">Disabled</a>
-                <a class="dropdown-item" href="#">Removed</a>
+            <div class="dropdown-menu status-dropdown" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#" val="All">All</a>
+                <a class="dropdown-item" href="#" val="Enabled">Enabled</a>
+                <a class="dropdown-item" href="#" val="Disabled">Disabled</a>
+                <a class="dropdown-item" href="#" val="Pending">Pending</a>
             </div>
         </div>
     </div>
