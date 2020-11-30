@@ -23,6 +23,19 @@ namespace MVCApp.Services
             this._accountService = accountService;
         }
 
+        public bool DeleteAccount(int Id)
+        {
+            var result = _accountService.DeleteAccount(Id);
+            return result;
+        }
+
+        public AccountModel GetAccount(int Id)
+        {
+            var account = _accountFactory.GetAccount(Id);
+            var accountModel = _accountModelFactory.GetAccountModel(account);
+            return accountModel;
+        }
+
         public IEnumerable<AccountModel> GetAllAccounts()
         {
             var accountEntites = _accountFactory.ConstructFromDb();

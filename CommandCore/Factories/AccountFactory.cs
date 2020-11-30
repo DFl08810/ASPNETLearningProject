@@ -59,5 +59,12 @@ namespace CommandCore.Factories
             var matchedAccounts = _dataAccess.MatchByString(matchString);
             return matchedAccounts.ToList();
         }
+
+        public Account GetAccount(int Id)
+        {
+            var account = _dataAccess.SelectById(Id);
+            return account;
+
+        }
     }
 }

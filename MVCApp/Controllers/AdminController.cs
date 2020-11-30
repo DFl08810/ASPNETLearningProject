@@ -76,5 +76,20 @@ namespace MVCApp.Controllers
             var result = _accountService.SortAllAccounts(sortMode);
             return PartialView("_AccountsPartial", result);
         }
+
+        [HttpGet]
+        public IActionResult Delete(int Id)
+        {
+            //remove user from identity database
+            var eventRes = _credentialsService.DeleteUser(Id, this.User);
+            //delete user from main database
+            if (eventRes)
+            {
+                _accountService.DeleteAccount(Id);
+                return StatusCode(200, "User has been deleted");
+
+            }
+            return StatusCode(403, "Cannot delete this user");
+        }
     }
 }

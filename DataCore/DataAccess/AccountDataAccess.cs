@@ -61,7 +61,8 @@ namespace DataCore.DataAccess
 
         public Account SelectById(int id)
         {
-            throw new NotImplementedException();
+            var result = _db.Accounts.Find(id);
+            return result;
         }
 
         public bool UpdateRange(IEnumerable<Account> obj)

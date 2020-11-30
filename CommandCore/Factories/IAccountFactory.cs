@@ -11,7 +11,7 @@ namespace CommandCore.Factories
     public interface IAccountFactory
     {
         List<Account> ConstructAccounts(List<User> users, bool isNew = false, bool isDefault = false);
-
+        Account GetAccount(int Id);
         List<Account> ConstructFromDb();
         List<Account> ConstructMatching(string matchString);
     }

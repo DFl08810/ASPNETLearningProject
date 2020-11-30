@@ -17,6 +17,11 @@ namespace CommandCore.Services
             this._accountDbAccess = accountDbAccess;
         }
 
+        public bool DeleteAccount(int Id)
+        {
+            return false;
+        }
+
         public IEnumerable<Account> SaveRange(List<Account> accounts)
         {
             _accountDbAccess.SaveRange(accounts);

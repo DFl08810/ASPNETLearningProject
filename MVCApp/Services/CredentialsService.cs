@@ -169,5 +169,37 @@ namespace MVCApp.Services
             var users = _userManager.Users;
             return users.ToList();
         }
+
+        public bool DeleteUser(int Id, System.Security.Claims.ClaimsPrincipal currentUser)
+        {
+            var user = GetUser(Id);
+            var role = _userManager.GetRolesAsync(user).Result;
+
+
+
+            if(role.FirstOrDefault() == RoleDef.Admin || currentUser.Identity.Name == user.UserName)
+            {
+                return false;
+            }
+            else
+            {
+                var result = _userManager.DeleteAsync(user);
+
+                if (result.Result.Succeeded)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+            
+        }
+
+        public User GetUser(int Id)
+        {
+            var account = _accountFactory.GetAccount(Id);
+            var user = _userManager.FindByNameAsync(account.Name);
+            return user.Result;
+        }
     }
 }
