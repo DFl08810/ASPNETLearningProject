@@ -1,0 +1,112 @@
+﻿@model MVCApp.Models.AccountModel
+
+@using Microsoft.AspNetCore.Identity
+@using IdentityLib.Models;
+@inject SignInManager<IdentityLib.Models.User> SignInManager
+
+@{
+    var statusString = "Enabled";
+    if(!Model.Status)
+    {
+        statusString = "Disabled";
+    }
+    if (Model.IsPending)
+    {
+        statusString = "Pending";
+    }
+}
+
+
+<div class="formular-container">
+
+    <form asp-action="Update">
+        <div class="form-element">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-sm-2 text-bold">
+                    @Html.DisplayNameFor(model => model.Name):
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.Name)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 text-bold">
+                    @Html.DisplayNameFor(model => model.Registered):
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.Registered)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 text-bold">
+                    @Html.DisplayNameFor(model => model.LastLogin):
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.LastLogin)
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="form-group col-sm-12 col-md-6">
+                    <label asp-for="Email" class="control-label text-bold"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-sm-12 col-md-6">
+                    <label asp-for="Role" class="control-label text-bold"></label>
+                    @if (User.IsInRole(RoleDef.Admin) && User.Identity.Name == Model.Name)
+                    {
+                        <select asp-for="Role" asp-items="@(new SelectList(new List<String> { "Admin" }))" class="form-control"></select>
+                    }
+                    else
+                    {
+                        <select asp-for="Role" asp-items="@(new SelectList(new List<String> { "Admin", "User" }))" class="form-control"></select>
+                    }
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row" id="statusRow">
+                <div class="col-sm-2 col-md-2 text-bold">
+                    @Html.DisplayNameFor(model => model.Status):
+                </div>
+                <div class="col-sm-2 col-md-10">
+                    <span>@statusString -></span>
+                    @if (Model.IsPending)
+                    {
+                        <input type="button" value="Accept" id="acceptButton" class="btn btn-blue btn-outline-dark status-control" />
+                    }
+                    else if (Model.Status)
+                    {
+                        <input type="button" value="Disable" id="disableButton" class="btn btn-blue btn-outline-dark status-control" />
+                    }
+                    else
+                    {
+                        <input type="button" value="Enable" id="enableButton" class="btn btn-blue btn-outline-dark status-control" />
+                    }
+                </div>
+                @*<div class="col-sm-8 col-md-10">
+                    @if (Model.IsPending)
+                    {
+                        <input type="button" value="Accept" id="acceptButton" class="btn btn-blue btn-outline-dark" />
+                    }
+                </div>*@
+            </div>
+
+
+
+        </div>
+
+        <div class="control-element">
+            <div class="form-group">
+                <input type="button" value="Configure" class="btn btn-secondary" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+
+</div>
+

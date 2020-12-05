@@ -47,7 +47,7 @@ namespace MVCApp.Controllers
             var accounts = _accountService.GetAllAccounts();
             return View(accounts);
         }
-
+        
 
         public IActionResult Synchronize()
         {
@@ -90,6 +90,18 @@ namespace MVCApp.Controllers
 
             }
             return StatusCode(403, "Cannot delete this user");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int Id)
+        {
+            var account = _accountService.GetAccount(Id);
+            return View(account);
+        }
+        [HttpPost]
+        public IActionResult Edit(AccountModel account)
+        {
+            return View();
         }
     }
 }

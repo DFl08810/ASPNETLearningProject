@@ -149,6 +149,8 @@ $("#SearchButton").click(function (event) {
 });
 
 
+
+//delete 
 $(function () {
     $(".delete-item").click(function (e) {
         var idSelection = $(this).attr('val');
