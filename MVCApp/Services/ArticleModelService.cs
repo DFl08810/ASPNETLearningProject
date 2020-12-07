@@ -28,7 +28,7 @@ namespace MVCApp.EntityServices
             this._publishingService = publishingService;
         }
 
-        public List<ArticleModel> FetchArticles()
+        public IEnumerable<ArticleModel> FetchArticles()
         {
             var articlesFab = _articlePrefactory.CreateArticles();
 

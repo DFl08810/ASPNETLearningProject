@@ -12,6 +12,7 @@ namespace MVCApp.Models
         public string Title { get; set; }
         public string Synopsis { get; set; }
         public string Content { get; set; }
-
+        public DateTime CreatedDate { get; set; }
+        public int NoOfComments { get; set; }
     }
 }

@@ -15,5 +15,12 @@ namespace DataCore
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite("Data Source=maindb.db");
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Article>()
+                .HasOne<Account>(ar => ar.Author)
+                .WithMany(ac => ac.Articles);
+        }
     }
 }

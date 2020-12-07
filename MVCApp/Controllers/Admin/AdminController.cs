@@ -36,11 +36,11 @@ namespace MVCApp.Controllers
             return View();
         }
 
-        public IActionResult Articles()
-        {
-            var articles = _articleService.FetchArticles();
-            return View(articles);
-        }
+        //public IActionResult Articles()
+        //{
+        //    var articles = _articleService.FetchArticles();
+        //    return View(articles);
+        //}
 
         public IActionResult Accounts()
         {
@@ -93,11 +93,13 @@ namespace MVCApp.Controllers
         }
 
         [HttpGet]
+        [Route("Admin/Account/Edit/{Id:int}")]
         public IActionResult Edit(int Id)
         {
             var account = _accountService.GetAccount(Id);
             return View(account);
         }
+
         [HttpPost]
         public IActionResult Edit(AccountModel account)
         {

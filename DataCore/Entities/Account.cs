@@ -16,5 +16,6 @@ namespace DataCore.Entities
         public DateTime LastLogin { get; set; }
         public int NoOfComments { get; set; }
         public int NoOfArticles { get; set; }
+        public ICollection<Article> Articles { get; set; }
     }
 }

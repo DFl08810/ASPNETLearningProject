@@ -10,5 +10,6 @@ namespace DataCore.Entities
         public string Title { get; set; }
         public string Synopsis { get; set; }
         public string Content { get; set; }
+        public Account Author { get; set; }
     }
 }
