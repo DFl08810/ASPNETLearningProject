@@ -30,10 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="wwwroot\ts\Control.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Update="wwwroot\css\site.css">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

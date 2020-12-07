@@ -10,5 +10,7 @@ namespace CommandCore.Services
     public interface IAccountService
     {
         IEnumerable<Account> Synchronize(List<Account> accounts);
+        IEnumerable<Account> SaveRange(List<Account> accounts);
+        bool DeleteAccount(int Id);
     }
 }

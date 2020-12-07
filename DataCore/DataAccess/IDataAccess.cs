@@ -17,5 +17,6 @@ namespace DataCore.DataAccess
         IEnumerable<T> MatchByString(string matchString);
         int Commit();
         bool UpdateRange(IEnumerable<T> obj);
+        bool RemoveRange(IEnumerable<T> obj);
     }
 }

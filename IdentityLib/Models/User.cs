@@ -9,8 +9,10 @@ namespace IdentityLib.Models
 {
     public class User : IdentityUser
     {
+
         //alias that is used in application
         public string DisplayNickName { get; set; }
         public bool IsEnabled { get; set; }
+
     }
 }

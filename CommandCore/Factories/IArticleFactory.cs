@@ -1,4 +1,5 @@
 ﻿using CommandCore.Prefabs;
+using DataCore.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,9 @@ using System.Threading.Tasks;
 
 namespace CommandCore.Factories
 {
-    public interface IArticlePrefactory
+    public interface IArticleFactory
     {
-        List<ArticlePrefab> CreateArticle();
-        List<ArticlePrefab> CreateArticles();
-
+        Article GetArticle(int Id);
+        IEnumerable<Article> GetAll();
     }
 }

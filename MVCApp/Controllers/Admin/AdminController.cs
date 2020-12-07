@@ -36,22 +36,23 @@ namespace MVCApp.Controllers
             return View();
         }
 
-        public IActionResult Articles()
-        {
-            var articles = _articleService.FetchArticles();
-            return View(articles);
-        }
+        //public IActionResult Articles()
+        //{
+        //    var articles = _articleService.FetchArticles();
+        //    return View(articles);
+        //}
 
-        public IActionResult Accounts()
-        {
-            var accounts = _accountService.GetAllAccounts();
-            return View(accounts);
-        }
-
+        //public IActionResult Accounts()
+        //{
+        //    var accounts = _accountService.GetAllAccounts();
+        //    return View(accounts);
+        //}
+        
 
         public IActionResult Synchronize()
         {
             //retrieves all users in identity database
+            
             var usersFromIdentity = _credentialsService.RetrieveUsers().Result;
 
             //performs synchronization of all users registered in app
@@ -74,6 +75,35 @@ namespace MVCApp.Controllers
             //if sortMode is null, no mode is tripped and unsorted list is returned
             var result = _accountService.SortAllAccounts(sortMode);
             return PartialView("_AccountsPartial", result);
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int Id)
+        {
+            //remove user from identity database
+            var eventRes = _credentialsService.DeleteUser(Id, this.User);
+            //delete user from main database
+            if (eventRes)
+            {
+                _accountService.DeleteAccount(Id);
+                return StatusCode(200, "User has been deleted");
+
+            }
+            return StatusCode(403, "Cannot delete this user");
+        }
+
+        [HttpGet]
+        [Route("Admin/Account/Edit/{Id:int}")]
+        public IActionResult Edit(int Id)
+        {
+            var account = _accountService.GetAccount(Id);
+            return View(account);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(AccountModel account)
+        {
+            return View();
         }
     }
 }

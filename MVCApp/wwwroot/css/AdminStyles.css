@@ -14,8 +14,30 @@
 .navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link:active {
   color: #ECAF3B !important; }
 
+.card .formular-container {
+  margin: 0.5rem; }
+  .card .formular-container form {
+    display: flex;
+    flex-direction: column; }
+    .card .formular-container form .form-element #statusRow [class*="col-"] {
+      display: flex;
+      align-items: center; }
+      .card .formular-container form .form-element #statusRow [class*="col-"] .status-control {
+        margin: 0 5px 0 5px; }
+    .card .formular-container form .control-element {
+      display: flex;
+      justify-content: flex-end; }
+      .card .formular-container form .control-element input {
+        margin: 0 5px 0 5px; }
+
 .fixed-width {
   min-width: 7rem; }
+
+.alert {
+  margin: 1rem 0.5rem 1rem 0.5rem; }
+
+.text-bold {
+  font-weight: 500; }
 
 .outline-dark {
   border: 1px solid #6c757d; }
@@ -58,7 +80,11 @@
   justify-content: center;
   align-items: baseline;
   align-content: stretch;
-  padding: 1rem 0 0.5rem 0; }
+  padding: 1rem 0 0.5rem 0;
+  margin: 0 2rem 0 2rem; }
+
+.toolbox-right {
+  justify-content: right !important; }
 
 .input-group {
   width: auto;
@@ -89,8 +115,17 @@
 .fa-user-cog {
   color: #ECAF3B; }
 
+.fa-info-circle {
+  color: #ECAF3B; }
+
 .fa-trash-alt {
   color: #f44336; }
+
+.fa-clock {
+  color: #ECAF3B; }
+
+.fa-caret-square-right {
+  color: #87aadb; }
 
 tr td a .fas {
   padding: 0, 0.125rem 0 0.125rem; }
@@ -103,3 +138,6 @@ tr td .fa-check {
 
 tr td .fa-times {
   color: #f44336; }
+
+tr td .fa-clock {
+  color: #ECAF3B; }

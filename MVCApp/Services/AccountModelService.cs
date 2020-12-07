@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace MVCApp.Services
 {
+    //Model services are used to get and send data from view layer to data and logic layer
     public class AccountModelService : IAccountModelService
     {
         private readonly IAccountFactory _accountFactory;
@@ -23,9 +24,22 @@ namespace MVCApp.Services
             this._accountService = accountService;
         }
 
+        public bool DeleteAccount(int Id)
+        {
+            var result = _accountService.DeleteAccount(Id);
+            return result;
+        }
+
+        public AccountModel GetAccount(int Id)
+        {
+            var account = _accountFactory.GetAccount(Id);
+            var accountModel = _accountModelFactory.GetAccountModel(account);
+            return accountModel;
+        }
+
         public IEnumerable<AccountModel> GetAllAccounts()
         {
-            var accountEntites = _accountFactory.ConstructFromDb();
+            var accountEntites = _accountFactory.GetAll();
             var result = _accountModelFactory.GetAccountModels(accountEntites);
             return result;
         }
@@ -42,7 +56,7 @@ namespace MVCApp.Services
         public IEnumerable<AccountModel> SortAllAccounts(string sortMode)
         {
             //get all entities
-            var accountEntites = _accountFactory.ConstructFromDb();
+            var accountEntites = _accountFactory.GetAll();
 
 
             //order mode selection
@@ -80,7 +94,6 @@ namespace MVCApp.Services
             var accountSynced = _accountService.Synchronize(acountEntities);
             var result = _accountModelFactory.GetAccountModels(accountSynced.ToList());
  
-
             return result;
         }
     }

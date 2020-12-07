@@ -35,6 +35,12 @@ namespace DataCore.DataAccess
             return queryResult;
         }
 
+        public bool RemoveRange(IEnumerable<Account> obj)
+        {
+            _db.RemoveRange(obj);
+            return true;
+        }
+
         public bool Save(Account article)
         {
             _db.Add(article);
@@ -49,13 +55,14 @@ namespace DataCore.DataAccess
 
         public IEnumerable<Account> SelectAll()
         {
-            var queryResult = _db.Accounts.AsNoTracking();
+            var queryResult = _db.Accounts;
             return queryResult.ToList();
         }
 
         public Account SelectById(int id)
         {
-            throw new NotImplementedException();
+            var result = _db.Accounts.Find(id);
+            return result;
         }
 
         public bool UpdateRange(IEnumerable<Account> obj)
@@ -63,6 +70,8 @@ namespace DataCore.DataAccess
             //_db.Entry(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             try
             {
+                _db.Accounts.AttachRange(obj);
+                _db.Entry(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 _db.UpdateRange(obj);
             }
             catch (Exception exc)

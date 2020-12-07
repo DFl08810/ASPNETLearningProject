@@ -1,4 +1,5 @@
 ﻿using DataCore.Entities;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,12 @@ namespace DataCore.DataAccess
     public class ArticleDataAccess : IDataAccess<Article>
     {
         private DataContext _db;
+        private readonly ILogger<Exception> _logger;
 
-        public ArticleDataAccess(DataContext db)
+        public ArticleDataAccess(DataContext db, ILogger<Exception> logger)
         {
             this._db = db;
+            this._logger = logger;
         }
 
         public Article Read(int id)
@@ -40,7 +43,7 @@ namespace DataCore.DataAccess
 
         public Article SelectById(int id)
         {
-            throw new NotImplementedException();
+            return _db.Articles.Find(id);
         }
 
         public IEnumerable<Article> SelectAll()
@@ -52,6 +55,27 @@ namespace DataCore.DataAccess
         public IEnumerable<Article> MatchByString(string matchString)
         {
             throw new NotImplementedException();
+        }
+
+        public bool UpdateRange(IEnumerable<Article> obj)
+        {
+            try
+            {
+                _db.UpdateRange(obj);
+            }
+            catch (Exception exc)
+            {
+                _logger.LogError(exc.Message);
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool RemoveRange(IEnumerable<Article> obj)
+        {
+            _db.RemoveRange(obj);
+            return true;
         }
     }
 }

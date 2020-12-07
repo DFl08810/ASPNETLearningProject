@@ -1,4 +1,5 @@
 ﻿using CommandCore.Prefabs;
+using DataCore.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace CommandCore.Services
 {
-    public interface IPublishingService
+    public interface IArticleService
     {
-        bool PublishData(ArticlePrefab articlePrefab);
+        IEnumerable<Article> SaveRange(List<Article> articles);
+        bool DeleteArticle(int Id);
     }
 }

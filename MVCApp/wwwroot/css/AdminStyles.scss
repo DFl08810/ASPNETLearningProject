@@ -35,9 +35,49 @@ body {
         }
     }
 }
+.card {
+    .formular-container {
+        margin: 0.5rem;
+
+        form {
+            display: flex;
+            flex-direction: column;
+
+            .form-element {
+                #statusRow {
+                    [class*="col-"] {
+                        display: flex;
+                        align-items: center;
+
+                        .status-control {
+                            margin: 0 5px 0 5px;
+                        }
+                    }
+                }
+            }
+
+            .control-element {
+                display: flex;
+                justify-content: flex-end;
+
+                input {
+                    margin: 0 5px 0 5px;
+                }
+            }
+        }
+    }
+}
 
 .fixed-width {
     min-width: 7rem;
+}
+
+.alert {
+    margin: 1rem 0.5rem 1rem 0.5rem;
+}
+
+.text-bold {
+    font-weight:500;
 }
 
 .outline-dark {
@@ -85,6 +125,11 @@ body {
     align-items: baseline;
     align-content: stretch;
     padding: 1rem 0 0.5rem 0;
+    margin: 0 2rem 0 2rem;
+}
+
+.toolbox-right {
+    justify-content: right !important;
 }
 
 .input-group {
@@ -121,18 +166,28 @@ body {
 .fa-user-cog {
     color: $color_yellow;
 }
+.fa-info-circle {
+    color: $color_yellow;
+}
 .fa-trash-alt {
     color: $color_red;
+}
+
+.fa-clock {
+    color: $color_yellow;
+}
+.fa-caret-square-right {
+    color: $color_blu;
 }
 tr {
     td {
         a {
 
-                .fas {
-                    padding: 0, 0.125rem 0 0.125rem;
-                }
-
+            .fas {
+                padding: 0, 0.125rem 0 0.125rem;
+            }
         }
+
         table-symbol {
             margin: auto;
         }
@@ -143,6 +198,10 @@ tr {
 
         .fa-times {
             color: $color_red;
+        }
+
+        .fa-clock {
+            color: $color_yellow;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace MVCApp.Models.Factories
     public interface IAccountModelFactory
     {
         AccountModel GetAccountModel(Account accountEnt);
-        List<AccountModel> GetAccountModels(List<Account> accountEnts);
-        List<AccountModel> GetAccountModels(List<User> users);
+        IEnumerable<AccountModel> GetAccountModels(IEnumerable<Account> accountEnts);
+        List<AccountModel> GetAccountModels(List<User> users, bool isNew = false);
     }
 }
