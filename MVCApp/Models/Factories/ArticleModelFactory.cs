@@ -1,4 +1,5 @@
 ﻿using CommandCore.Prefabs;
+using DataCore.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,30 +7,31 @@ using System.Threading.Tasks;
 
 namespace MVCApp.Models.Factories
 {
+    //Model factories are used for converting data objects to models used in views
     public class ArticleModelFactory : IArticleModelFactory
     {
 
 
-        public ArticleModel GetArticleModel(ArticlePrefab articlePrefab)
+        public ArticleModel GetArticleModel(Article article)
         {
             return new ArticleModel
             {
-                Id = articlePrefab.Id,
-                Title = articlePrefab.Title,
-                Synopsis = articlePrefab.Synopsis,
-                Content = articlePrefab.Content
+                Id = article.Id,
+                Title = article.Title,
+                Synopsis = article.Synopsis,
+                Content = article.Content
             };
         }
 
-        public List<ArticleModel> GetArticleModels(List<ArticlePrefab> articlePrefabs)
+        public IEnumerable<ArticleModel> GetArticleModels(IEnumerable<Article> articles)
         {
-            List<ArticleModel> articles = new List<ArticleModel>();
-            foreach (var article in articlePrefabs)
+            List<ArticleModel> articleModels = new List<ArticleModel>();
+            foreach (var article in articles)
             {
                 ArticleModel articleModel = GetArticleModel(article);
-                articles.Add(articleModel);
+                articleModels.Add(articleModel);
             }
-            return articles;
+            return articleModels;
         }
     }
 }

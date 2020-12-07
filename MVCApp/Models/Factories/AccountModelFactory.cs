@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace MVCApp.Models.Factories
 {
+    //Model factories are used for converting data objects to models used in views
     public class AccountModelFactory : IAccountModelFactory
     {
         private readonly UserManager<User> _userMan;
@@ -35,7 +36,7 @@ namespace MVCApp.Models.Factories
             };
         }
 
-        public List<AccountModel> GetAccountModels(List<Account> accountEnts)
+        public IEnumerable<AccountModel> GetAccountModels(IEnumerable<Account> accountEnts)
         {
             List<AccountModel> accounts = new List<AccountModel>();
             foreach (var account in accountEnts)
@@ -46,6 +47,7 @@ namespace MVCApp.Models.Factories
             return accounts;
         }
 
+        //overloaded accounts creation method, accepts user from identity framework
         public List<AccountModel> GetAccountModels(List<User> users, bool isNew = false)
         {
             var accountModels = new List<AccountModel>();

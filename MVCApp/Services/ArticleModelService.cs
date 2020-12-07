@@ -1,6 +1,7 @@
 ﻿using CommandCore.Factories;
 using CommandCore.Prefabs;
 using CommandCore.Services;
+using DataCore.Entities;
 using MVCApp.Models;
 using MVCApp.Models.Factories;
 using System;
@@ -10,41 +11,62 @@ using System.Threading.Tasks;
 
 namespace MVCApp.EntityServices
 {
+    //Model services are used to get and send data from view layer to data and logic layer
 
     //This service provides all essential functions for operating with article models
     //It can use factories to fetch articles from database and use the same factories to create objects for writing objects into database
     //It contains auxiliary functions related to sorting lists retrieved from database
     public class ArticleModelService : IArticleModelService
     {
-        private readonly IArticlePrefactory _articlePrefactory;
+        private readonly IArticleFactory _articleFactory;
         private readonly IArticleModelFactory _articleModelFactory;
-        private readonly IPublishingService _publishingService;
+        private readonly IArticleService _articleService;
 
-        public ArticleModelService(IArticlePrefactory articlePrefactory, IArticleModelFactory articleModelFactory,
-                            IPublishingService publishingService)
+        public ArticleModelService(IArticleFactory articleFactory, IArticleModelFactory articleModelFactory,
+                            IArticleService articleService)
         {
-            this._articlePrefactory = articlePrefactory;
+            this._articleFactory = articleFactory;
             this._articleModelFactory = articleModelFactory;
-            this._publishingService = publishingService;
+            this._articleService = articleService;
         }
 
-        public IEnumerable<ArticleModel> FetchArticles()
+        public IEnumerable<ArticleModel> GetAllArticles()
         {
-            var articlesFab = _articlePrefactory.CreateArticles();
+            var articles = _articleFactory.GetAll();
 
-            var articleModels = _articleModelFactory.GetArticleModels(articlesFab);
+            var articleModels = _articleModelFactory.GetArticleModels(articles);
 
             return articleModels;
         }
 
         #region submissionProcess
-        public bool PostArticle(ArticleModel article)
+        public bool PostArticle(ArticleModel articleModel)
         {
-            var articlePrefab = new ArticlePrefab(article.Id, article.Title, article.Synopsis, article.Content);
-            var result = _publishingService.PublishData(articlePrefab);
+            var article = ConvertModelToEntity(articleModel);
+            _articleService.SaveRange(new List<Article> { article });
+            return true;
 
-            return result;
+        }
 
+        private Article ConvertModelToEntity(ArticleModel articleModel)
+        {
+            return new Article
+            {
+                Id = articleModel.Id,
+                Title = articleModel.Title,
+                Synopsis = articleModel.Synopsis,
+                Content = articleModel.Content,
+            };
+        }
+        private IEnumerable<Article> ConvertModelToEntity(List<ArticleModel> articleModels)
+        {
+            List<Article> articles = new List<Article>();
+            foreach (var article in articleModels)
+            {
+                Article articleEntity = ConvertModelToEntity(article);
+                articles.Add(articleEntity);
+            }
+            return articles;
         }
         #endregion
     }

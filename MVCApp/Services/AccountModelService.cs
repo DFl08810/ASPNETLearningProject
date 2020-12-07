@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace MVCApp.Services
 {
+    //Model services are used to get and send data from view layer to data and logic layer
     public class AccountModelService : IAccountModelService
     {
         private readonly IAccountFactory _accountFactory;
@@ -38,7 +39,7 @@ namespace MVCApp.Services
 
         public IEnumerable<AccountModel> GetAllAccounts()
         {
-            var accountEntites = _accountFactory.ConstructFromDb();
+            var accountEntites = _accountFactory.GetAll();
             var result = _accountModelFactory.GetAccountModels(accountEntites);
             return result;
         }
@@ -55,7 +56,7 @@ namespace MVCApp.Services
         public IEnumerable<AccountModel> SortAllAccounts(string sortMode)
         {
             //get all entities
-            var accountEntites = _accountFactory.ConstructFromDb();
+            var accountEntites = _accountFactory.GetAll();
 
 
             //order mode selection

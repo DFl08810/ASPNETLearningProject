@@ -8,7 +8,7 @@ namespace MVCApp.EntityServices
 {
     public interface IArticleModelService
     {
-        IEnumerable<ArticleModel> FetchArticles();
+        IEnumerable<ArticleModel> GetAllArticles();
 
         bool PostArticle(ArticleModel article);
     }

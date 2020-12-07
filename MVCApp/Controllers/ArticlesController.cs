@@ -24,7 +24,7 @@ namespace MVCApp.Controllers
         public IActionResult List()
         {
             //Gets articles from database through internal logic
-            var articles = _articleService.FetchArticles();
+            var articles = _articleService.GetAllArticles();
             return View(articles);
         }
 

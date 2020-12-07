@@ -43,8 +43,8 @@ namespace MVCApp
             services.AddTransient<IAccountModelService, AccountModelService>();
             #endregion
             #region CommandServices
-            services.AddTransient<IArticlePrefactory, ArticlePrefactory>();
-            services.AddTransient<IPublishingService, PublishingService>();
+            services.AddTransient<IArticleFactory, ArticleFactory>();
+            services.AddTransient<IArticleService, ArticleService>();
             services.AddTransient<IAccountFactory, AccountFactory>();
             services.AddTransient<IAccountService, AccountService>();
             #endregion
@@ -52,7 +52,6 @@ namespace MVCApp
             services.AddDbContext<DataContext>();
             services.AddTransient<IDataAccess<Article>, ArticleDataAccess>();
             services.AddTransient<IDataAccess<Account>, AccountDataAccess>();
-            services.AddTransient<IArticleDB, ArticleDbService>();
             #endregion
             #region Identity
             services.AddDbContext<IdentityDataContext>();

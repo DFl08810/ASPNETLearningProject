@@ -42,11 +42,11 @@ namespace MVCApp.Controllers
         //    return View(articles);
         //}
 
-        public IActionResult Accounts()
-        {
-            var accounts = _accountService.GetAllAccounts();
-            return View(accounts);
-        }
+        //public IActionResult Accounts()
+        //{
+        //    var accounts = _accountService.GetAllAccounts();
+        //    return View(accounts);
+        //}
         
 
         public IActionResult Synchronize()

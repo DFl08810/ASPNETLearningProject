@@ -22,6 +22,7 @@ namespace CommandCore.Factories
             this._userMan = userManager;
         }
 
+        //Make account list from user object defined by identity framework
         public List<Account> ConstructAccounts(List<User> users, bool isNew = false, bool isDefault = false)
         {
             var accountModels = new List<Account>();
@@ -47,19 +48,22 @@ namespace CommandCore.Factories
             return accountModels;
         }
 
-        public List<Account> ConstructFromDb()
+        //Select all entries in db
+        public IEnumerable<Account> GetAll()
         {
             var accounts = _dataAccess.SelectAll();
 
             return accounts.ToList();
         }
 
+        //Query used for searching in account properties
         public List<Account> ConstructMatching(string matchString)
         {
             var matchedAccounts = _dataAccess.MatchByString(matchString);
             return matchedAccounts.ToList();
         }
 
+        //Select by obj Id
         public Account GetAccount(int Id)
         {
             var account = _dataAccess.SelectById(Id);

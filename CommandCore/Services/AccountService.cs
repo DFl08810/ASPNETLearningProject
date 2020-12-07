@@ -19,7 +19,11 @@ namespace CommandCore.Services
 
         public bool DeleteAccount(int Id)
         {
-            return false;
+
+            var accountToDelete = _accountDbAccess.SelectById(Id);
+            _accountDbAccess.RemoveRange(new List<Account> { accountToDelete });
+            _accountDbAccess.Commit();
+            return true;
         }
 
         public IEnumerable<Account> SaveRange(List<Account> accounts)

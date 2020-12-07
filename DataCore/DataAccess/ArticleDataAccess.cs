@@ -43,7 +43,7 @@ namespace DataCore.DataAccess
 
         public Article SelectById(int id)
         {
-            throw new NotImplementedException();
+            return _db.Articles.Find(id);
         }
 
         public IEnumerable<Article> SelectAll()
@@ -74,7 +74,8 @@ namespace DataCore.DataAccess
 
         public bool RemoveRange(IEnumerable<Article> obj)
         {
-            throw new NotImplementedException();
+            _db.RemoveRange(obj);
+            return true;
         }
     }
 }

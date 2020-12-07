@@ -12,7 +12,7 @@ namespace CommandCore.Factories
     {
         List<Account> ConstructAccounts(List<User> users, bool isNew = false, bool isDefault = false);
         Account GetAccount(int Id);
-        List<Account> ConstructFromDb();
+        IEnumerable<Account> GetAll();
         List<Account> ConstructMatching(string matchString);
     }
 }

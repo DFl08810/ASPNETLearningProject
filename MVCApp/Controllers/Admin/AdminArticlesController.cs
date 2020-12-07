@@ -22,7 +22,7 @@ namespace MVCApp.Controllers.Admin
 
         public IActionResult Index()
         {
-            var articles = _articleService.FetchArticles();
+            var articles = _articleService.GetAllArticles();
             return View("../Admin/Articles", articles);
         }
     }

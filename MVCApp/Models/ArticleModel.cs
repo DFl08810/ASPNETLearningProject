@@ -14,5 +14,6 @@ namespace MVCApp.Models
         public string Content { get; set; }
         public DateTime CreatedDate { get; set; }
         public int NoOfComments { get; set; }
+        public AccountModel Author { get; set; }
     }
 }
