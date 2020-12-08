@@ -85,13 +85,16 @@
                     {
                         <input type="button" value="Enable" id="enableButton" class="btn btn-blue btn-outline-dark status-control" />
                     }
+                    @Html.HiddenFor(m => m.Status)
+                    @Html.HiddenFor(m => m.IsPending)
                 </div>
+                
                 @*<div class="col-sm-8 col-md-10">
-                    @if (Model.IsPending)
-                    {
-                        <input type="button" value="Accept" id="acceptButton" class="btn btn-blue btn-outline-dark" />
-                    }
-                </div>*@
+            @if (Model.IsPending)
+            {
+                <input type="button" value="Accept" id="acceptButton" class="btn btn-blue btn-outline-dark" />
+            }
+        </div>*@
             </div>
 
 
