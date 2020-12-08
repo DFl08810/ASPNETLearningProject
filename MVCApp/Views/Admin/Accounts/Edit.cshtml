@@ -16,3 +16,7 @@
 <div class="card table-card">
     @await Html.PartialAsync("../Admin/Accounts/_AccountEditForm", Model)
 </div>
+
+<div class="card table-card">
+    @await Component.InvokeAsync("AccountValidation")
+</div>
