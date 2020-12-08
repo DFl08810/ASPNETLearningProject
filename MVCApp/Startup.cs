@@ -58,8 +58,16 @@ namespace MVCApp
             services.AddIdentity<User, IdentityRole>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<IdentityDataContext>();
+            //Claims policy settings
+            services.AddAuthorization(options =>
+            {
+                //setup for article publishing rights
+                options.AddPolicy("AllowPublishing", policy => policy.RequireClaim("CanPublish"));
+            });
             #endregion
             services.AddTransient<ICredentialsService, CredentialsService>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

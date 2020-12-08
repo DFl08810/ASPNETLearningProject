@@ -32,8 +32,13 @@ namespace MVCApp.Services
             this._accountFactory = accountFactory;
         }
 
+
+        
+
         private async void CreateDefaultCredentials()
         {
+            //define claim that allows writing articles
+            var claims = new System.Security.Claims.Claim("CanPublish", "yes");
             //define defaults
             #region makeAdmin
             var defaultAdmin = new User();
@@ -53,11 +58,11 @@ namespace MVCApp.Services
 
             await UserCreate(defaultAdmin, adminDefaultPassword, RoleDef.Admin, true);
             await UserCreate(defaultUser, userDefaultPassword, RoleDef.User, true);
+            //add claims to default users
+            await _userManager.AddClaimAsync(defaultAdmin, claims);
+            await _userManager.AddClaimAsync(defaultUser, claims);
             #endregion
-            #region makeTestUser
 
-
-            #endregion
         }
 
         private async void CreateDefaultRoles()
