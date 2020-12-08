@@ -13,6 +13,7 @@ namespace MVCApp.Controllers.Admin
 {
     //Controller for accounts actions in admininistration page
     [Authorize(Roles = RoleDef.Admin)]
+    
     public class AdminAccountsController : Controller
     {
         private readonly IAccountModelService _accountService;
@@ -30,7 +31,7 @@ namespace MVCApp.Controllers.Admin
         {
             var accounts = _accountService.GetAllAccounts();
             
-            return View("../Admin/Accounts", accounts);
+            return View("../Admin/Accounts/Index", accounts);
         }
 
 
@@ -39,14 +40,62 @@ namespace MVCApp.Controllers.Admin
         public IActionResult Edit(int Id)
         {
             var account = _accountService.GetAccount(Id);
-            return View("../Admin/Edit", account);
+            return View("../Admin/Accounts/Edit", account);
         }
 
         [HttpPost]
         [Route("Admin/Accounts/Edit/{Account?}")]
         public IActionResult Edit(AccountModel account)
         {
-            return View("../Admin/Edit");
+            return View("../Admin/Accounts/Edit");
+        }
+
+        [HttpGet]
+        [Route("Admin/Accounts/SearchUser")]
+        public IActionResult SearchUser(string searchQuery)
+        {
+            var resultAccounts = _accountService.GetMatchingAccounts(searchQuery);
+
+            return PartialView("../Admin/Accounts/_AccountsPartial", resultAccounts);
+        }
+
+
+        [HttpGet]
+        [Route("Admin/Accounts/SortBy")]
+        public IActionResult SortBy(string sortMode)
+        {
+            //sort and  return
+            //if sortMode is null, no mode is tripped and unsorted list is returned
+            var result = _accountService.SortAllAccounts(sortMode);
+            return PartialView("../Admin/Accounts/_AccountsPartial", result);
+        }
+
+        [HttpGet]
+        [Route("Admin/Accounts/Delete")]
+        public IActionResult Delete(int Id)
+        {
+            //remove user from identity database
+            var eventRes = _credentialsService.DeleteUser(Id, this.User);
+            //delete user from main database
+            if (eventRes)
+            {
+                _accountService.DeleteAccount(Id);
+                return StatusCode(200, "User has been deleted");
+
+            }
+            return StatusCode(403, "Cannot delete this user");
+        }
+
+        [Route("Admin/Accounts/Synchronize")]
+        public IActionResult Synchronize()
+        {
+            //retrieves all users in identity database
+
+            var usersFromIdentity = _credentialsService.RetrieveUsers().Result;
+
+            //performs synchronization of all users registered in app
+            var resultAccounts = _accountService.Synchronize(usersFromIdentity);
+            return View("../Admin/Accounts/Index", resultAccounts);
         }
     }
 }

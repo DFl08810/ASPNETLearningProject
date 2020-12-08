@@ -64,6 +64,10 @@ body {
                     margin: 0 5px 0 5px;
                 }
             }
+
+            .right {
+                justify-content: flex-start !important;
+            }
         }
     }
 }
@@ -112,6 +116,13 @@ body {
 
 .btn-green {
     background-color: $color_green;
+    color: $color_light;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.btn-red {
+    background-color: $color_red;
     color: $color_light;
     border-radius: 5px;
     font-weight: 500;

@@ -29,6 +29,8 @@
       justify-content: flex-end; }
       .card .formular-container form .control-element input {
         margin: 0 5px 0 5px; }
+    .card .formular-container form .right {
+      justify-content: flex-start !important; }
 
 .fixed-width {
   min-width: 7rem; }
@@ -69,6 +71,12 @@
 
 .btn-green {
   background-color: #30B885;
+  color: #EBF2F2;
+  border-radius: 5px;
+  font-weight: 500; }
+
+.btn-red {
+  background-color: #f44336;
   color: #EBF2F2;
   border-radius: 5px;
   font-weight: 500; }

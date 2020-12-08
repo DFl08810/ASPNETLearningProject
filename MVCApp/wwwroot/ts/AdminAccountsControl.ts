@@ -91,6 +91,13 @@ $(function () {
     });
 });
 
+//sync
+$(function () {
+    $("#SyncButton").click(function (e) {
+        window.location.href = "/Admin/Accounts/Synchronize";
+    });
+});
+
 //gets selected value from sort dropdown and calls semi abstracted ajax func 
 $(function () {
     $(".sort-dropdown a").click(function (e) {
@@ -103,7 +110,7 @@ $(function () {
 });
 //semi abstracted ajax call for admin controller
 function CallTarget(dataObject, target: string) {
-    $.ajax(`/Admin/${target}`, {
+    $.ajax(`/Admin/Accounts/${target}`, {
         type: 'GET',  // http method
         //define content type for expected data
         contentType: 'application/x-www-form-urlencoded',
@@ -131,7 +138,7 @@ $("#SearchButton").click(function (event) {
     var query = $(`#${buttonId} input`).val();
     console.log(query);
     //JQuey AJAX call to SearchUser(string searchQuery) method in admin controller
-    $.ajax('/Admin/SearchUser', {
+    $.ajax('/Admin/Accounts/SearchUser', {
         type: 'GET',  // http method
         //define content type for expected data
         contentType: 'application/x-www-form-urlencoded',
@@ -159,7 +166,7 @@ $(function () {
 
 
         console.log(idSelection);
-        $.ajax('/Admin/Delete', {
+        $.ajax('/Admin/Accounts/Delete', {
             type: 'GET',  // http method
             //define content type for expected data
             contentType: 'application/x-www-form-urlencoded',

@@ -49,48 +49,48 @@ namespace MVCApp.Controllers
         //}
         
 
-        public IActionResult Synchronize()
-        {
-            //retrieves all users in identity database
+        //public IActionResult Synchronize()
+        //{
+        //    //retrieves all users in identity database
             
-            var usersFromIdentity = _credentialsService.RetrieveUsers().Result;
+        //    var usersFromIdentity = _credentialsService.RetrieveUsers().Result;
 
-            //performs synchronization of all users registered in app
-            var resultAccounts = _accountService.Synchronize(usersFromIdentity);
-            return View("Accounts", resultAccounts);
-        }
+        //    //performs synchronization of all users registered in app
+        //    var resultAccounts = _accountService.Synchronize(usersFromIdentity);
+        //    return View("Accounts", resultAccounts);
+        //}
 
-        [HttpGet]
-        public IActionResult SearchUser(string searchQuery)
-        {
-            var resultAccounts = _accountService.GetMatchingAccounts(searchQuery);
+        //[HttpGet]
+        //public IActionResult SearchUser(string searchQuery)
+        //{
+        //    var resultAccounts = _accountService.GetMatchingAccounts(searchQuery);
 
-            return PartialView("_AccountsPartial", resultAccounts);
-        }
+        //    return PartialView("_AccountsPartial", resultAccounts);
+        //}
 
-        [HttpGet]
-        public IActionResult SortBy(string sortMode) 
-        {
-            //sort and  return
-            //if sortMode is null, no mode is tripped and unsorted list is returned
-            var result = _accountService.SortAllAccounts(sortMode);
-            return PartialView("_AccountsPartial", result);
-        }
+        //[HttpGet]
+        //public IActionResult SortBy(string sortMode) 
+        //{
+        //    //sort and  return
+        //    //if sortMode is null, no mode is tripped and unsorted list is returned
+        //    var result = _accountService.SortAllAccounts(sortMode);
+        //    return PartialView("_AccountsPartial", result);
+        //}
 
-        [HttpGet]
-        public IActionResult Delete(int Id)
-        {
-            //remove user from identity database
-            var eventRes = _credentialsService.DeleteUser(Id, this.User);
-            //delete user from main database
-            if (eventRes)
-            {
-                _accountService.DeleteAccount(Id);
-                return StatusCode(200, "User has been deleted");
+        //[HttpGet]
+        //public IActionResult Delete(int Id)
+        //{
+        //    //remove user from identity database
+        //    var eventRes = _credentialsService.DeleteUser(Id, this.User);
+        //    //delete user from main database
+        //    if (eventRes)
+        //    {
+        //        _accountService.DeleteAccount(Id);
+        //        return StatusCode(200, "User has been deleted");
 
-            }
-            return StatusCode(403, "Cannot delete this user");
-        }
+        //    }
+        //    return StatusCode(403, "Cannot delete this user");
+        //}
 
 
     }
