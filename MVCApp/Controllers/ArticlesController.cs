@@ -36,9 +36,11 @@ namespace MVCApp.Controllers
             return View();
         }
         [HttpPost]
+        [Authorize(Policy = "AllowPublishing")]
         public IActionResult Create(ArticleModel article)
         {
-            var actionStatus = _articleService.PostArticle(article);
+            var currentUser = this.User;
+            var actionStatus = _articleService.PostArticle(article, currentUser.Identity.Name);
             return View();
         }
     }

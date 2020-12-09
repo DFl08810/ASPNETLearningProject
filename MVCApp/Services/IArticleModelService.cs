@@ -10,6 +10,6 @@ namespace MVCApp.EntityServices
     {
         IEnumerable<ArticleModel> GetAllArticles();
 
-        bool PostArticle(ArticleModel article);
+        bool PostArticle(ArticleModel article, string userName);
     }
 }

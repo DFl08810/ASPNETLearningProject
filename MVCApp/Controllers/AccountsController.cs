@@ -56,7 +56,9 @@ namespace MVCApp.Controllers
             //Create user with disabled account
             //Requests are accepted by users with admin roles
             var result = _credentialService.MakeRegisterRequest(registration);
-            return View();
+
+            var loginResult = _credentialService.ProcessLogin(new LoginModel { UserName = registration.UserName, Password = registration.Password, RememberMe = false });
+            return RedirectToAction("Index", "Home");
         }
 
 

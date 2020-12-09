@@ -15,6 +15,8 @@ namespace DataCore.DataAccess
         bool Save(T obj);
         bool SaveRange(IEnumerable<T> obj);
         IEnumerable<T> MatchByString(string matchString);
+        //Param string defines name of related entity
+        IEnumerable<T> MatchByRelated(int Id, string paramString);
         int Commit();
         bool UpdateRange(IEnumerable<T> obj);
         bool RemoveRange(IEnumerable<T> obj);

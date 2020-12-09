@@ -40,10 +40,11 @@ namespace MVCApp.EntityServices
         }
 
         #region submissionProcess
-        public bool PostArticle(ArticleModel articleModel)
+        public bool PostArticle(ArticleModel articleModel, string userName)
         {
             var article = ConvertModelToEntity(articleModel);
-            _articleService.SaveRange(new List<Article> { article });
+            article.Author = new Account { Name = userName };
+            _articleService.SaveNew(article);
             return true;
 
         }

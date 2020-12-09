@@ -77,5 +77,12 @@ namespace DataCore.DataAccess
             _db.RemoveRange(obj);
             return true;
         }
+
+        public IEnumerable<Article> MatchByRelated(int Id, string paramString)
+        {
+            var option = paramString;
+            var queryResult = _db.Articles.Where(item => item.Author.Id.Equals(Id));
+            return queryResult;
+        }
     }
 }

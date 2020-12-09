@@ -11,6 +11,7 @@ namespace CommandCore.Services
     public interface IArticleService
     {
         IEnumerable<Article> SaveRange(List<Article> articles);
+        Article SaveNew(Article article);
         bool DeleteArticle(int Id);
     }
 }

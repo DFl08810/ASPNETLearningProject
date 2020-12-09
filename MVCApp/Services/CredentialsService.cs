@@ -56,8 +56,8 @@ namespace MVCApp.Services
             string userDefaultPassword = "Usertest123*";
 
 
-            await UserCreate(defaultAdmin, adminDefaultPassword, RoleDef.Admin, true);
-            await UserCreate(defaultUser, userDefaultPassword, RoleDef.User, true);
+            await UserCreate(defaultAdmin, adminDefaultPassword, RoleDef.Admin, "Default user" ,true);
+            await UserCreate(defaultUser, userDefaultPassword, RoleDef.User, "Default user" ,true);
             //add claims to default users
             await _userManager.AddClaimAsync(defaultAdmin, claims);
             await _userManager.AddClaimAsync(defaultUser, claims);
@@ -135,10 +135,10 @@ namespace MVCApp.Services
             };
 
             //call user create that returns true if creation is succcessfull
-            return await UserCreate(newUserRegistration, registration.Password, RoleDef.User, isDefault);
+            return await UserCreate(newUserRegistration, registration.Password, RoleDef.User, registration.RegistrationMessage, isDefault);
         }
 
-        private async Task<bool> UserCreate(User user, string password, string role, bool isDefault = false)
+        private async Task<bool> UserCreate(User user, string password, string role, string registrationMessage, bool isDefault = false)
         {
             //userManager is called to create desired default creds
             IdentityResult chkUser = await _userManager.CreateAsync(user, password);
@@ -151,7 +151,7 @@ namespace MVCApp.Services
                 if (chkRole.Succeeded)
                 {
                     //create list from user and pass it to main app database
-                    AssingNewUserToAppDb(new List<User> { user }, isDefault);
+                    AssingNewUserToAppDb(new List<User> { user }, registrationMessage ,isDefault);
                     
                 }
                 return true;
@@ -161,7 +161,7 @@ namespace MVCApp.Services
         }
 
         //create record for new user in local app db separate from identity db
-        private bool AssingNewUserToAppDb(List<User> users, bool isDefault = false)
+        private bool AssingNewUserToAppDb(List<User> users, string registrationMessage, bool isDefault = false)
         {
             //set optional isNew parameter to true, so factory can assing pending acceptation flag to account
             var accountModels = _accountFactory.ConstructAccounts(users, true, isDefault);

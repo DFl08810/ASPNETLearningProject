@@ -28,6 +28,12 @@ namespace DataCore.DataAccess
             return 1;
         }
 
+        public IEnumerable<Account> MatchByRelated(int Id, string paramString)
+        {
+            var option = paramString;
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Account> MatchByString(string matchString)
         {
             //Using simple linq query with OR logic statement to find all matching elements

@@ -17,5 +17,6 @@ namespace DataCore.Entities
         public int NoOfComments { get; set; }
         public int NoOfArticles { get; set; }
         public ICollection<Article> Articles { get; set; }
+        public string RegistrationMessage { get; set; }
     }
 }
