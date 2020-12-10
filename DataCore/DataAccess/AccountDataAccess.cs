@@ -81,6 +81,10 @@ namespace DataCore.DataAccess
                 var tracking = _db.ChangeTracker.Entries<Account>().Any(x => x.Entity.Id == obj.Id);
                 if (!tracking)
                 {
+                    //Attach modified entity
+                    _db.Accounts.Attach(obj);
+                    //set as modified
+                    _db.Entry(obj).State = EntityState.Modified;
                     _db.Accounts.Update(obj);
                 }
                 else
