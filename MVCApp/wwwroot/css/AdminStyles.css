@@ -98,9 +98,12 @@
   width: auto;
   margin: 0.5rem; }
 
-.table-card {
+.content-card {
   margin: 0.5rem 2rem 0.5rem 2rem;
   border-radius: 15px; }
+
+.top-margin {
+  margin-top: 1.5rem; }
 
 .btn-blue {
   background-color: #87aadb;
@@ -149,3 +152,16 @@ tr td .fa-times {
 
 tr td .fa-clock {
   color: #ECAF3B; }
+
+.account-validation-controll {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem; }
+  .account-validation-controll .paragraph {
+    padding: 0 1rem 0 1rem; }
+
+.control-element {
+  display: flex;
+  justify-content: flex-end; }
+  .control-element input {
+    margin: 0 5px 0 5px; }

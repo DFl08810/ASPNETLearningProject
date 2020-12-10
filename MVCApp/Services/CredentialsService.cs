@@ -1,5 +1,6 @@
 ﻿using CommandCore.Factories;
 using CommandCore.Services;
+using DataCore.Entities;
 using IdentityLib.Models;
 using Microsoft.AspNetCore.Identity;
 using MVCApp.Models;
@@ -151,7 +152,7 @@ namespace MVCApp.Services
                 if (chkRole.Succeeded)
                 {
                     //create list from user and pass it to main app database
-                    AssingNewUserToAppDb(new List<User> { user }, registrationMessage ,isDefault);
+                    AssingNewUserToAppDb(user , registrationMessage ,isDefault);
                     
                 }
                 return true;
@@ -161,11 +162,13 @@ namespace MVCApp.Services
         }
 
         //create record for new user in local app db separate from identity db
-        private bool AssingNewUserToAppDb(List<User> users, string registrationMessage, bool isDefault = false)
+        private bool AssingNewUserToAppDb(User users, string registrationMessage, bool isDefault = false)
         {
             //set optional isNew parameter to true, so factory can assing pending acceptation flag to account
-            var accountModels = _accountFactory.ConstructAccounts(users, true, isDefault);
-            _accountService.SaveRange(accountModels);
+            var accountModel = _accountFactory.ConstructAccounts(new List<User> { users }, true, isDefault).FirstOrDefault();
+            //assign reg message
+            accountModel.RegistrationMessage = registrationMessage;
+            _accountService.SaveRange(new List<Account> { accountModel });
             return true;
         }
 

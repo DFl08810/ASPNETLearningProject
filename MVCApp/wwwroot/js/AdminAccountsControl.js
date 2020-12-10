@@ -84,6 +84,27 @@ $(function () {
         window.location.href = "/Admin/Accounts/Synchronize";
     });
 });
+//Accept pending request
+$(function () {
+    $("#acceptButton").click(function (e) {
+        var accountId = $(this).attr('val');
+        var id = +accountId;
+    });
+});
+//disable request
+$(function () {
+    $("#disableButton").click(function (e) {
+        var accountId = $(this).attr('val');
+        var id = +accountId;
+    });
+});
+//ENABLE request
+$(function () {
+    $("#enableButton").click(function (e) {
+        var accountId = $(this).attr('val');
+        var id = +accountId;
+    });
+});
 //gets selected value from sort dropdown and calls semi abstracted ajax func 
 $(function () {
     $(".sort-dropdown a").click(function (e) {

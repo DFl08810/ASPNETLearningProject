@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MVCApp.Models;
+using MVCApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +11,20 @@ namespace MVCApp.ViewComponents
     //Component for validating accounts
     public class AccountValidationViewComponent : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync()
+        private readonly IAccountModelService _accountModelService;
+        private readonly ICredentialsService _credentialsService;
+
+        public AccountValidationViewComponent(IAccountModelService accountModelService)
         {
-            return View();
+            this._accountModelService = accountModelService;
         }
+
+        public async Task<IViewComponentResult> InvokeAsync(int Id)
+        {
+            var accountModel = _accountModelService.GetAccount(Id);
+            
+            return View(accountModel);
+        }
+
     }
 }

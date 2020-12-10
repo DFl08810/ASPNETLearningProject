@@ -1,6 +1,43 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using MVCApp.Models
+@using MVCApp.ViewComponents
+@model AccountModel
+
 @{
+    var statusString = "enabled";
+    if (!Model.Status)
+    {
+        statusString = "disabled";
+    }
+    if (Model.IsPending)
+    {
+        statusString = "pending acceptance";
+    }
 }
-<h1>TEST COMPONENT</h1>
+
+<div class="account-validation-controll">
+    <h5 class="text-header">@Html.DisplayFor(m => m.Name)´s account is @statusString</h5>
+    <div class="paragraph text-bold">
+        <hr />
+        @Html.DisplayNameFor(m => m.RegistrationMessage):
+    </div>
+    <div class="paragraph">
+        @Html.DisplayFor(m => m.RegistrationMessage):
+        <hr />
+    </div>
+    <div class="control-element">
+        <div class="form-group">
+            @if (Model.IsPending)
+            {
+                <input type="button" val="@Model.Id" value="Accept registration request" id="acceptButton" class="btn btn-green btn-outline-dark status-control" />
+            }
+            else if (Model.Status)
+            {
+                <input type="button" val="@Model.Id" value="Disable account" id="disableButton" class="btn btn-red btn-outline-dark status-control" />
+            }
+            else
+            {
+                <input type="button" val="@Model.Id" value="Enable account" id="enableButton" class="btn btn-green btn-outline-dark status-control" />
+            }
+        </div>
+    </div>
+</div>

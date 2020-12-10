@@ -13,10 +13,11 @@
 
 </div>
 
-<div class="card table-card">
+<div class="card content-card">
+    @await Component.InvokeAsync("AccountValidation", Model.Id)
+</div>
+
+<div class="card content-card top-margin">
     @await Html.PartialAsync("../Admin/Accounts/_AccountEditForm", Model)
 </div>
 
-<div class="card table-card">
-    @await Component.InvokeAsync("AccountValidation")
-</div>

@@ -97,5 +97,26 @@ namespace MVCApp.Controllers.Admin
             var resultAccounts = _accountService.Synchronize(usersFromIdentity);
             return View("../Admin/Accounts/Index", resultAccounts);
         }
+
+        [HttpPost]
+        [Route("Admin/Accounts/Accept/{Id?}")]
+        public IActionResult Accept(int Id)
+        {
+            return View("../Admin/Accounts/Edit");
+        }
+
+        [HttpPost]
+        [Route("Admin/Accounts/Disable/{Id?}")]
+        public IActionResult Disable(int Id)
+        {
+            return View("../Admin/Accounts/Edit");
+        }
+
+        [HttpPost]
+        [Route("Admin/Accounts/Enable/{Id?}")]
+        public IActionResult Enable(int Id)
+        {
+            return View("../Admin/Accounts/Edit");
+        }
     }
 }
