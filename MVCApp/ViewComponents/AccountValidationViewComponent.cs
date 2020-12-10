@@ -19,10 +19,8 @@ namespace MVCApp.ViewComponents
             this._accountModelService = accountModelService;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(int Id)
+        public async Task<IViewComponentResult> InvokeAsync(AccountModel accountModel)
         {
-            var accountModel = _accountModelService.GetAccount(Id);
-            
             return View(accountModel);
         }
 

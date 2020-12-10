@@ -13,11 +13,15 @@
 
 </div>
 
-<div class="card content-card">
-    @await Component.InvokeAsync("AccountValidation", Model.Id)
+<div id="AccountValidationComponent" class="card content-card">
+    @await Component.InvokeAsync("AccountValidation", Model)
 </div>
 
-<div class="card content-card top-margin">
+<div id="AccountEditForm" class="card content-card top-margin">
     @await Html.PartialAsync("../Admin/Accounts/_AccountEditForm", Model)
 </div>
 
+@section Scripts {
+
+    <script src="~/js/AdminAccountsControl.js" asp-append-version="true"></script>
+}

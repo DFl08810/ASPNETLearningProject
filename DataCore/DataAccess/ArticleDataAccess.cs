@@ -84,5 +84,10 @@ namespace DataCore.DataAccess
             var queryResult = _db.Articles.Where(item => item.Author.Id.Equals(Id));
             return queryResult;
         }
+
+        public bool Update(Article obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

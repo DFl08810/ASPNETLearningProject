@@ -98,21 +98,24 @@ namespace MVCApp.Controllers.Admin
             return View("../Admin/Accounts/Index", resultAccounts);
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("Admin/Accounts/Accept/{Id?}")]
         public IActionResult Accept(int Id)
         {
-            return View("../Admin/Accounts/Edit");
+            var account = _accountService.GetAccount(Id);
+            account.IsPending = false;
+            _accountService.UpdateAccount(account);
+            return ViewComponent("AccountValidation", account);
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("Admin/Accounts/Disable/{Id?}")]
         public IActionResult Disable(int Id)
         {
             return View("../Admin/Accounts/Edit");
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("Admin/Accounts/Enable/{Id?}")]
         public IActionResult Enable(int Id)
         {

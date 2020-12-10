@@ -12,6 +12,7 @@ namespace CommandCore.Services
         IEnumerable<Account> Synchronize(List<Account> accounts);
         IEnumerable<Account> SaveRange(List<Account> accounts);
         IEnumerable<Account> UpdateRange(List<Account> accounts);
+        Account Update(Account accounts);
         bool DeleteAccount(int Id);
     }
 }

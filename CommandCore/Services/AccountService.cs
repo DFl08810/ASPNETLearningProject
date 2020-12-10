@@ -102,5 +102,12 @@ namespace CommandCore.Services
             _accountDbAccess.Commit();
             return accounts;
         }
+
+        public Account Update(Account account)
+        {
+            _accountDbAccess.Update(account);
+            _accountDbAccess.Commit();
+            return account;
+        }
     }
 }

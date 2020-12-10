@@ -104,6 +104,9 @@ $(function () {
     $("#acceptButton").click(function (e) {
         var accountId = $(this).attr('val');
         var id: number = +accountId;
+        console.log(id);
+        var dataObject = { Id: id };
+        CallValidationTarget(dataObject, "Accept")
     });
 });
 
@@ -112,6 +115,8 @@ $(function () {
     $("#disableButton").click(function (e) {
         var accountId = $(this).attr('val');
         var id: number = +accountId;
+        var dataObject = { Id: id };
+        CallValidationTarget(dataObject, "Disable")
     });
 });
 
@@ -120,9 +125,30 @@ $(function () {
     $("#enableButton").click(function (e) {
         var accountId = $(this).attr('val');
         var id: number = +accountId;
+        var dataObject = { Id: id };
+        CallValidationTarget(dataObject, "Enable")
     });
 });
 
+
+//semi abstracted ajax call for admin controller
+function CallValidationTarget(dataObject, target: string) {
+    $.ajax(`/Admin/Accounts/${target}`, {
+        type: 'GET',  // http method
+        //define content type for expected data
+        contentType: 'application/x-www-form-urlencoded',
+        data: dataObject,  // data to submit
+        success: function (data, status, xhr) {
+            //remove content of card
+            $('#AccountValidationComponent').empty();
+            //append partial view
+            $('#AccountValidationComponent').append(data);
+        },
+        error: function (jqXhr, textStatus, errorMessage) {
+            console.log("failure");
+        }
+    });
+}
 
 //gets selected value from sort dropdown and calls semi abstracted ajax func 
 $(function () {
@@ -143,9 +169,9 @@ function CallTarget(dataObject, target: string) {
         data: dataObject,  // data to submit
         success: function (data, status, xhr) {
             //remove content of card
-            $('.table-card').empty();
+            $('#AccountEditForm').empty();
             //append partial view
-            $('.table-card').append(data);
+            $('#AccountEditForm').append(data);
             SortStatus(SelectionOrigin.statusSelection);
             SortRoles(SelectionOrigin.roleSelection);
         },

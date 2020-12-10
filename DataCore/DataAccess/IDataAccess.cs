@@ -19,6 +19,8 @@ namespace DataCore.DataAccess
         IEnumerable<T> MatchByRelated(int Id, string paramString);
         int Commit();
         bool UpdateRange(IEnumerable<T> obj);
+
+        bool Update(T obj);
         bool RemoveRange(IEnumerable<T> obj);
     }
 }
