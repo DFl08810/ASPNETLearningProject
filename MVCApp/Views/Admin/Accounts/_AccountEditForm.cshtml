@@ -22,6 +22,9 @@
     <form asp-action="Update">
         <div class="form-element">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row" hidden="hidden">
+                @Html.HiddenFor(model => model.Id);
+            </div>
             <div class="row">
                 <div class="col-sm-2 text-bold">
                     @Html.DisplayNameFor(model => model.Name):
@@ -46,6 +49,30 @@
                     @Html.DisplayFor(model => model.LastLogin)
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm-2 text-bold">
+                    @Html.DisplayNameFor(model => model.NoOfArticles):
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.NoOfArticles)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 text-bold">
+                    @Html.DisplayNameFor(model => model.NoOfComments):
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.NoOfComments)
+                </div>
+            </div>
+            <div class="row" id="statusRow">
+                <div class="col-sm-2 col-md-2 text-bold">
+                    @Html.DisplayNameFor(model => model.Status):
+                </div>
+                <div class="col-sm-2 col-md-10">
+                    <span>@statusString</span>
+                </div>
+            </div>
             <hr />
             <div class="row">
                 <div class="form-group col-sm-12 col-md-6">
@@ -67,36 +94,23 @@
                     <span asp-validation-for="Role" class="text-danger"></span>
                 </div>
             </div>
-            <div class="row" id="statusRow">
-                <div class="col-sm-2 col-md-2 text-bold">
-                    @Html.DisplayNameFor(model => model.Status):
-                </div>
-                <div class="col-sm-2 col-md-10">
-                    <span>@statusString -></span>
-                    @if (Model.IsPending)
-                    {
-                        <input type="button" value="Accept" id="acceptButton" class="btn btn-blue btn-outline-dark status-control" />
-                    }
-                    else if (Model.Status)
-                    {
-                        <input type="button" value="Disable" id="disableButton" class="btn btn-blue btn-outline-dark status-control" />
-                    }
-                    else
-                    {
-                        <input type="button" value="Enable" id="enableButton" class="btn btn-blue btn-outline-dark status-control" />
-                    }
-                </div>
-                @*<div class="col-sm-8 col-md-10">
-                    @if (Model.IsPending)
-                    {
-                        <input type="button" value="Accept" id="acceptButton" class="btn btn-blue btn-outline-dark" />
-                    }
-                </div>*@
-            </div>
-
-
-
         </div>
+        @*<div class="control-element right">
+            <div class="form-group">
+                @if (Model.IsPending)
+                {
+                    <input type="button" value="Accept registration request" id="acceptButton" class="btn btn-green btn-outline-dark status-control" />
+                }
+                else if (Model.Status)
+                {
+                    <input type="button" value="Disable account" id="disableButton" class="btn btn-red btn-outline-dark status-control" />
+                }
+                else
+                {
+                    <input type="button" value="Enable account" id="enableButton" class="btn btn-green btn-outline-dark status-control" />
+                }
+            </div>
+        </div>*@
 
         <div class="control-element">
             <div class="form-group">

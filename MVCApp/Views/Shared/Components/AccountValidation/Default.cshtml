@@ -1,0 +1,43 @@
+﻿@using MVCApp.Models
+@using MVCApp.ViewComponents
+@model AccountModel
+
+@{
+    var statusString = "enabled";
+    if (!Model.Status)
+    {
+        statusString = "disabled";
+    }
+    if (Model.IsPending)
+    {
+        statusString = "pending acceptance";
+    }
+}
+
+<div class="account-validation-controll">
+    <h5 class="text-header">@Html.DisplayFor(m => m.Name)´s account is @statusString</h5>
+    <div class="paragraph text-bold">
+        <hr />
+        @Html.DisplayNameFor(m => m.RegistrationMessage):
+    </div>
+    <div class="paragraph">
+        @Html.DisplayFor(m => m.RegistrationMessage):
+        <hr />
+    </div>
+    <div class="control-element">
+        <div class="form-group">
+            @if (Model.IsPending)
+            {
+                <input type="button" onclick="ValidateAcccount(@Model.Id, 'Accept')" value="Accept registration request" id="acceptButton" class="btn btn-green outline-dark status-control" />
+            }
+            else if (Model.Status)
+            {
+                <input type="button" onclick="ValidateAcccount(@Model.Id, 'Disable')" value="Disable account" id="disableButton" class="btn btn-red outline-dark status-control" />
+            }
+            else
+            {
+                <input type="button" onclick="ValidateAcccount(@Model.Id, 'Enable')" value="Enable account" id="enableButton" class="btn btn-green outline-dark status-control" />
+            }
+        </div>
+    </div>
+</div>

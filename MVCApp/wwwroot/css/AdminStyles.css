@@ -29,6 +29,8 @@
       justify-content: flex-end; }
       .card .formular-container form .control-element input {
         margin: 0 5px 0 5px; }
+    .card .formular-container form .right {
+      justify-content: flex-start !important; }
 
 .fixed-width {
   min-width: 7rem; }
@@ -73,6 +75,19 @@
   border-radius: 5px;
   font-weight: 500; }
 
+.btn-green:hover {
+  color: #2C2D39; }
+
+.btn-red {
+  background-color: #f44336;
+  color: #EBF2F2;
+  border-radius: 5px;
+  font-weight: 500; }
+
+.btn-red:hover {
+  background-color: #f54f43;
+  color: #2C2D39; }
+
 .toolbox {
   display: flex;
   flex-direction: row;
@@ -90,9 +105,12 @@
   width: auto;
   margin: 0.5rem; }
 
-.table-card {
+.content-card {
   margin: 0.5rem 2rem 0.5rem 2rem;
   border-radius: 15px; }
+
+.top-margin {
+  margin-top: 1.5rem; }
 
 .btn-blue {
   background-color: #87aadb;
@@ -141,3 +159,16 @@ tr td .fa-times {
 
 tr td .fa-clock {
   color: #ECAF3B; }
+
+.account-validation-controll {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem; }
+  .account-validation-controll .paragraph {
+    padding: 0 1rem 0 1rem; }
+
+.control-element {
+  display: flex;
+  justify-content: flex-end; }
+  .control-element input {
+    margin: 0 5px 0 5px; }

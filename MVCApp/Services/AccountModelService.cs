@@ -1,5 +1,6 @@
 ﻿using CommandCore.Factories;
 using CommandCore.Services;
+using DataCore.Entities;
 using IdentityLib.Models;
 using MVCApp.Models;
 using MVCApp.Models.Factories;
@@ -95,6 +96,31 @@ namespace MVCApp.Services
             var result = _accountModelFactory.GetAccountModels(accountSynced.ToList());
  
             return result;
+        }
+
+        public AccountModel UpdateAccount(AccountModel accountModel)
+        {
+            var account = GetAccountEntity(accountModel);
+            _accountService.Update(account);
+            return accountModel;
+        }
+
+        private Account GetAccountEntity(AccountModel accountModel)
+        {
+            return new Account
+            {
+                Id = accountModel.Id,
+                Role = accountModel.Role,
+                Email = accountModel.Email,
+                LastLogin = accountModel.LastLogin,
+                Name = accountModel.Name,
+                NoOfArticles = accountModel.NoOfArticles,
+                NoOfComments = accountModel.NoOfComments,
+                Registered = accountModel.Registered,
+                Status = accountModel.Status,
+                IsPending = accountModel.IsPending,
+                RegistrationMessage = accountModel.RegistrationMessage
+            };
         }
     }
 }

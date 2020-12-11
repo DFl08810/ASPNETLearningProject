@@ -8,6 +8,8 @@ $color_yellow: #ECAF3B;
 $color_green: #30B885;
 $color_red: #f44336;
 
+$color_select_red: #f54f43;
+
 $color_baselight: #d0dada;
 $color_basegrey: #949797;
 
@@ -64,6 +66,10 @@ body {
                     margin: 0 5px 0 5px;
                 }
             }
+
+            .right {
+                justify-content: flex-start !important;
+            }
         }
     }
 }
@@ -117,6 +123,22 @@ body {
     font-weight: 500;
 }
 
+.btn-green:hover {
+    color: $color_dark;
+}
+
+.btn-red {
+    background-color: $color_red;
+    color: $color_light;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.btn-red:hover {
+    background-color: $color_select_red;
+    color: $color_dark;
+}
+
 .toolbox {
     display: flex;
     flex-direction: row;
@@ -137,9 +159,13 @@ body {
     margin: 0.5rem;
 }
 
-.table-card {
+.content-card {
     margin: 0.5rem 2rem 0.5rem 2rem;
     border-radius: 15px;
+}
+
+.top-margin {
+    margin-top: 1.5rem;
 }
 
 .btn-blue {
@@ -205,3 +231,22 @@ tr {
         }
     }
 }
+
+.account-validation-controll {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    .paragraph {
+        padding: 0 1rem 0 1rem;
+    }
+}
+
+.control-element {
+    display: flex;
+    justify-content: flex-end;
+
+    input {
+        margin: 0 5px 0 5px;
+    }
+}
+

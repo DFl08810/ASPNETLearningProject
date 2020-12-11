@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MVCApp.Models.ArticleModel>
+﻿@model IEnumerable<MVCApp.Models.AccountModel>
 @{
     ViewData["Title"] = "Admin - Accounts";
     Layout = "~/Views/Admin/_AdminNav.cshtml";
@@ -56,7 +56,7 @@
         </div>
     </div>
     <div class="input-group">
-        <button type="button" class="btn btn-blue outline-dark" href="Synchronize" data-toggle="tooltip" data-placement="top" title="Sync app and identity db tables">
+        <button type="button" id="SyncButton" class="btn btn-blue outline-dark" data-toggle="tooltip" data-placement="top" title="Sync app and identity db tables">
             Sync
         </button>
     </div>
@@ -71,11 +71,11 @@
 
 
 
-<div class="card table-card">
-    @await Html.PartialAsync("../Admin/_ArticlesPartial", Model)
+<div class="card content-card">
+    @await Html.PartialAsync("../Admin/Accounts/_AccountsPartial", Model)
 </div>
 
 @section Scripts {
 
-    <script src="~/js/AdminArticlesControl.js" asp-append-version="true"></script>
+    <script src="~/js/AdminAccountsControl.js" asp-append-version="true"></script>
 }

@@ -28,5 +28,7 @@ namespace MVCApp.Models
         public int NoOfComments { get; set; }
         [Display(Name = "ArticlesCount")]
         public int NoOfArticles { get; set; }
+
+        public string RegistrationMessage { get; set; }
     }
 }

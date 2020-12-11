@@ -32,7 +32,8 @@ namespace MVCApp.Models.Factories
                 NoOfComments = accountEnt.NoOfComments,
                 Registered = accountEnt.Registered,
                 Status = accountEnt.Status,
-                IsPending = accountEnt.IsPending
+                IsPending = accountEnt.IsPending,
+                RegistrationMessage = accountEnt.RegistrationMessage
             };
         }
 

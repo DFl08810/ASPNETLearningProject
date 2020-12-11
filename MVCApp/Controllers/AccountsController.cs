@@ -13,10 +13,12 @@ namespace MVCApp.Controllers
     public class AccountController : Controller
     {
         private readonly ICredentialsService _credentialService;
+        private readonly SignInManager<User> _signInManager;
 
-        public AccountController(ICredentialsService credentialsService)
+        public AccountController(ICredentialsService credentialsService, SignInManager<User> signInManager)
         {
             this._credentialService = credentialsService;
+            this._signInManager = signInManager;
         }
 
         [BindProperty]
@@ -45,6 +47,12 @@ namespace MVCApp.Controllers
             //in success mode raturn to home view
             return RedirectToAction("Index", "Home");
         }
+
+        public IActionResult Logout()
+        {
+            _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
         public IActionResult Register()
         {
             return View();
@@ -56,7 +64,9 @@ namespace MVCApp.Controllers
             //Create user with disabled account
             //Requests are accepted by users with admin roles
             var result = _credentialService.MakeRegisterRequest(registration);
-            return View();
+
+            var loginResult = _credentialService.ProcessLogin(new LoginModel { UserName = registration.UserName, Password = registration.Password, RememberMe = false });
+            return RedirectToAction("Index", "Home");
         }
 
 

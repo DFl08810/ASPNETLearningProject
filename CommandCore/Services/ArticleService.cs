@@ -1,4 +1,5 @@
-﻿using CommandCore.Prefabs;
+﻿using CommandCore.Factories;
+using CommandCore.Prefabs;
 using DataCore;
 using DataCore.DataAccess;
 using DataCore.Entities;
@@ -14,10 +15,14 @@ namespace CommandCore.Services
     public class ArticleService : IArticleService
     {
         private readonly IDataAccess<Article> _dataAccess;
+        private readonly IAccountFactory _accountFactory;
+        private readonly IAccountService _accountService;
 
-        public ArticleService(IDataAccess<Article> dataAccess)
+        public ArticleService(IDataAccess<Article> dataAccess, IAccountFactory accountFactory, IAccountService accountService)
         {
             this._dataAccess = dataAccess;
+            this._accountFactory = accountFactory;
+            this._accountService = accountService;
         }
 
         public bool DeleteArticle(int Id)
@@ -34,6 +39,25 @@ namespace CommandCore.Services
             _dataAccess.SaveRange(articles);
             _dataAccess.Commit();
             return articles;
+        }
+
+        public Article SaveNew(Article article)
+        {
+            article.Author = _accountFactory.ConstructMatching(article.Author.Name).FirstOrDefault();
+
+            article.Author.NoOfArticles = CountAuthorArticles(article.Author) + 1;
+            //Update author
+            _accountService.UpdateRange(new List<Account> { article.Author });
+            //Add article with author to database
+            _dataAccess.Save(article);
+            _dataAccess.Commit();
+            return article;
+        }
+
+        private int CountAuthorArticles(Account author)
+        {
+            var articles = _dataAccess.MatchByRelated(author.Id, "author");
+            return articles.Count();
         }
 
     }

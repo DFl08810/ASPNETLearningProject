@@ -95,5 +95,19 @@ namespace CommandCore.Services
             }
             return _accountDbAccess.SelectAll(); 
         }
+
+        public IEnumerable<Account> UpdateRange(List<Account> accounts)
+        {
+            _accountDbAccess.UpdateRange(accounts);
+            _accountDbAccess.Commit();
+            return accounts;
+        }
+
+        public Account Update(Account account)
+        {
+            _accountDbAccess.Update(account);
+            _accountDbAccess.Commit();
+            return account;
+        }
     }
 }
