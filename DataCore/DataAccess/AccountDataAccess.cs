@@ -112,6 +112,7 @@ namespace DataCore.DataAccess
             }
         }
 
+
         public bool UpdateRange(IEnumerable<Account> obj)
         {
             //_db.Entry(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;

@@ -112,14 +112,37 @@ namespace MVCApp.Controllers.Admin
         [Route("Admin/Accounts/Disable/{Id?}")]
         public IActionResult Disable(int Id)
         {
-            return View("../Admin/Accounts/Edit");
+            var result = _credentialsService.SetUserStatus(Id, false);
+            if (result)
+            {
+                var account = _accountService.GetAccount(Id);
+                account.Status = false;
+                _accountService.UpdateAccount(account);
+                return ViewComponent("AccountValidation", account);
+            }
+            else
+            {
+                return StatusCode(403, "Cannot change status on this user.");
+            }
         }
 
         [HttpGet]
         [Route("Admin/Accounts/Enable/{Id?}")]
         public IActionResult Enable(int Id)
         {
-            return View("../Admin/Accounts/Edit");
+
+            var result = _credentialsService.SetUserStatus(Id, true);
+            if (result)
+            {
+                var account = _accountService.GetAccount(Id);
+                account.Status = true;
+                _accountService.UpdateAccount(account);
+                return ViewComponent("AccountValidation", account);
+            }
+            else
+            {
+                return StatusCode(403, "Cannot change status on this user.");
+            }
         }
     }
 }

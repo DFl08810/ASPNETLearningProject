@@ -203,11 +203,24 @@ namespace MVCApp.Services
             
         }
 
-        public User GetUser(int Id)
+        //
+        public User GetUser(int accountId)
         {
-            var account = _accountFactory.GetAccount(Id);
+            var account = _accountFactory.GetAccount(accountId);
             var user = _userManager.FindByNameAsync(account.Name);
             return user.Result;
+        }
+
+        public bool SetUserStatus(int accountId, bool status)
+        {
+            var user = GetUser(accountId);
+            user.IsEnabled = status;
+            if (!status)
+            {
+                _userManager.UpdateSecurityStampAsync(user);
+            }
+            var result = _userManager.UpdateAsync(user);
+            return result.Result.Succeeded;
         }
     }
 }

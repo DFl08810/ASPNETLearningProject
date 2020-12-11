@@ -84,34 +84,14 @@ $(function () {
         window.location.href = "/Admin/Accounts/Synchronize";
     });
 });
-//Accept pending request
-$(function () {
-    $("#acceptButton").click(function (e) {
-        var accountId = $(this).attr('val');
-        var id = +accountId;
-        console.log(id);
-        var dataObject = { Id: id };
-        CallValidationTarget(dataObject, "Accept");
-    });
-});
-//disable request
-$(function () {
-    $("#disableButton").click(function (e) {
-        var accountId = $(this).attr('val');
-        var id = +accountId;
-        var dataObject = { Id: id };
-        CallValidationTarget(dataObject, "Disable");
-    });
-});
-//ENABLE request
-$(function () {
-    $("#enableButton").click(function (e) {
-        var accountId = $(this).attr('val');
-        var id = +accountId;
-        var dataObject = { Id: id };
-        CallValidationTarget(dataObject, "Enable");
-    });
-});
+//Action
+function ValidateAcccount(accountId, action) {
+    var id = +accountId;
+    console.log(id);
+    console.log(action);
+    var dataObject = { Id: id };
+    CallValidationTarget(dataObject, action);
+}
 //semi abstracted ajax call for admin controller
 function CallValidationTarget(dataObject, target) {
     $.ajax(`/Admin/Accounts/${target}`, {

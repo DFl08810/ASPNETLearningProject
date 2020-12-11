@@ -28,15 +28,15 @@
         <div class="form-group">
             @if (Model.IsPending)
             {
-                <input type="button" val="@Model.Id" value="Accept registration request" id="acceptButton" class="btn btn-green btn-outline-dark status-control" />
+                <input type="button" onclick="ValidateAcccount(@Model.Id, 'Accept')" value="Accept registration request" id="acceptButton" class="btn btn-green outline-dark status-control" />
             }
             else if (Model.Status)
             {
-                <input type="button" val="@Model.Id" value="Disable account" id="disableButton" class="btn btn-red btn-outline-dark status-control" />
+                <input type="button" onclick="ValidateAcccount(@Model.Id, 'Disable')" value="Disable account" id="disableButton" class="btn btn-red outline-dark status-control" />
             }
             else
             {
-                <input type="button" val="@Model.Id" value="Enable account" id="enableButton" class="btn btn-green btn-outline-dark status-control" />
+                <input type="button" onclick="ValidateAcccount(@Model.Id, 'Enable')" value="Enable account" id="enableButton" class="btn btn-green outline-dark status-control" />
             }
         </div>
     </div>

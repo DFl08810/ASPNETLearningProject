@@ -14,6 +14,8 @@ namespace MVCApp.Services
         Task<bool> MakeRegisterRequest(RegistrationModel registration, bool isDefault = false);
         Task<List<User>> RetrieveUsers();
         bool DeleteUser(int Id, System.Security.Claims.ClaimsPrincipal currentUser);
-        User GetUser(int Id);
+        User GetUser(int accountId);
+
+        bool SetUserStatus(int accountId, bool status);
     }
 }

@@ -8,6 +8,8 @@ $color_yellow: #ECAF3B;
 $color_green: #30B885;
 $color_red: #f44336;
 
+$color_select_red: #f54f43;
+
 $color_baselight: #d0dada;
 $color_basegrey: #949797;
 
@@ -121,11 +123,20 @@ body {
     font-weight: 500;
 }
 
+.btn-green:hover {
+    color: $color_dark;
+}
+
 .btn-red {
     background-color: $color_red;
     color: $color_light;
     border-radius: 5px;
     font-weight: 500;
+}
+
+.btn-red:hover {
+    background-color: $color_select_red;
+    color: $color_dark;
 }
 
 .toolbox {

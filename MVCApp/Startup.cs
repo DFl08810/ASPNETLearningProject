@@ -64,6 +64,10 @@ namespace MVCApp
                 //setup for article publishing rights
                 options.AddPolicy("AllowPublishing", policy => policy.RequireClaim("CanPublish"));
             });
+
+            services.Configure<SecurityStampValidatorOptions>(options => {
+                options.ValidationInterval = TimeSpan.Zero;
+            });
             #endregion
             services.AddTransient<ICredentialsService, CredentialsService>();
 
