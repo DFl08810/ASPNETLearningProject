@@ -14,11 +14,6 @@ namespace MVCApp.ViewComponents
         private readonly IAccountModelService _accountModelService;
         private readonly ICredentialsService _credentialsService;
 
-        public AccountValidationViewComponent(IAccountModelService accountModelService)
-        {
-            this._accountModelService = accountModelService;
-        }
-
         public async Task<IViewComponentResult> InvokeAsync(AccountModel accountModel)
         {
             return View(accountModel);

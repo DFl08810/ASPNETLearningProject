@@ -101,8 +101,11 @@ namespace MVCApp.Services
         public AccountModel UpdateAccount(AccountModel accountModel)
         {
             var account = GetAccountEntity(accountModel);
-            _accountService.Update(account);
-            return accountModel;
+            var resultAccount =_accountService.Update(account);
+
+            var resultAccountModel = _accountModelFactory.GetAccountModel(resultAccount);
+
+            return resultAccountModel;
         }
 
         private Account GetAccountEntity(AccountModel accountModel)

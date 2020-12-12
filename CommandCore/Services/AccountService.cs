@@ -79,20 +79,23 @@ namespace CommandCore.Services
                 //something shoulg get here
             }
 
-
-
             //Method that assigns ids to accounts so EF Core can apply modify state
             List<Account>  MakeAttacheble(IEnumerable<Account> foreignAccounts, IEnumerable<Account> attachableAccounts)
             {
                 var outList = new List<Account>();
                 foreach (var item in attachableAccounts)
                 {
-                    item.Role = foreignAccounts.Where(i => i.Email == item.Email && i.Name == item.Name)
-                        .FirstOrDefault().Role;
-                    outList.Add(item);
+                    if (!string.IsNullOrEmpty(item.Name) || !string.IsNullOrEmpty(item.Email))
+                    {
+
+                        item.Role = foreignAccounts.Where(i => i.Email == item.Email && i.Name == item.Name)
+                            .FirstOrDefault().Role;
+                        outList.Add(item);
+                    }
                 }
                 return outList;
             }
+
             return _accountDbAccess.SelectAll(); 
         }
 
@@ -105,9 +108,16 @@ namespace CommandCore.Services
 
         public Account Update(Account account)
         {
-            _accountDbAccess.Update(account);
-            _accountDbAccess.Commit();
-            return account;
+            var result = _accountDbAccess.Update(account);
+            if (result)
+            {
+                _accountDbAccess.Commit();
+                return account;
+            }
+            else
+            {
+                return new Account();
+            }
         }
     }
 }

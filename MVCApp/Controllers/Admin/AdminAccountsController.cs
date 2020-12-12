@@ -13,7 +13,7 @@ namespace MVCApp.Controllers.Admin
 {
     //Controller for accounts actions in admininistration page
     [Authorize(Roles = RoleDef.Admin)]
-    
+
     public class AdminAccountsController : Controller
     {
         private readonly IAccountModelService _accountService;
@@ -30,7 +30,7 @@ namespace MVCApp.Controllers.Admin
         public IActionResult Index()
         {
             var accounts = _accountService.GetAllAccounts();
-            
+
             return View("../Admin/Accounts/Index", accounts);
         }
 
@@ -44,10 +44,38 @@ namespace MVCApp.Controllers.Admin
         }
 
         [HttpPost]
-        [Route("Admin/Accounts/Edit/{Account?}")]
-        public IActionResult Edit(AccountModel account)
+        [Route("Admin/Accounts/Update/{Account?}")]
+        public IActionResult Update(AccountModel Account)
         {
-            return View("../Admin/Accounts/Edit");
+            var accountModel = _accountService.GetAccount(Account.Id);
+
+            if (string.IsNullOrEmpty(Account.Role) || string.IsNullOrEmpty(Account.Email))
+            {
+                return View("../Admin/Accounts/Edit", accountModel);
+            }
+
+
+            //Chekcs if email or role is different than current database entry
+            if(accountModel.Email != Account.Email || accountModel.Role != Account.Role)
+            {
+                accountModel.Email = Account.Email;
+                accountModel.Role = Account.Role;
+
+
+                var user = _credentialsService.GetUser(accountModel.Id);
+                user.Email = Account.Email;
+
+
+                var identityResult = _credentialsService.UpdateUser(user, Account.Role, this.User);
+                if(identityResult)
+                {
+                    var resultAccount = _accountService.UpdateAccount(accountModel);
+                    return View("../Admin/Accounts/Edit", resultAccount);
+                }
+                
+            }
+
+            return View("../Admin/Accounts/Edit", accountModel);
         }
 
         [HttpGet]

@@ -181,11 +181,11 @@ namespace MVCApp.Services
         public bool DeleteUser(int Id, System.Security.Claims.ClaimsPrincipal currentUser)
         {
             var user = GetUser(Id);
-            var role = _userManager.GetRolesAsync(user).Result;
+            //var role = _userManager.GetRolesAsync(user).Result;
 
 
 
-            if(role.FirstOrDefault() == RoleDef.Admin || currentUser.Identity.Name == user.UserName)
+            if(_userManager.IsInRoleAsync(user, RoleDef.Admin).Result || currentUser.Identity.Name == user.UserName)
             {
                 return false;
             }
@@ -207,8 +207,17 @@ namespace MVCApp.Services
         public User GetUser(int accountId)
         {
             var account = _accountFactory.GetAccount(accountId);
-            var user = _userManager.FindByNameAsync(account.Name);
-            return user.Result;
+            var user = new User();
+            if (!string.IsNullOrEmpty(account.Name))
+            {
+                user = _userManager.FindByNameAsync(account.Name).Result;
+            }
+            else if (!string.IsNullOrEmpty(account.Email))
+            {
+                user = _userManager.FindByEmailAsync(account.Email).Result;
+            }
+            
+            return user;
         }
 
         public bool SetUserStatus(int accountId, bool status)
@@ -221,6 +230,21 @@ namespace MVCApp.Services
             }
             var result = _userManager.UpdateAsync(user);
             return result.Result.Succeeded;
+        }
+
+        public bool UpdateUser(User user, string role, System.Security.Claims.ClaimsPrincipal currentUser)
+        {
+            var result = _userManager.UpdateAsync(user);
+            if (result.Result.Succeeded)
+            {
+                if (_userManager.IsInRoleAsync(user, RoleDef.Admin).Result || currentUser.Identity.Name == user.UserName)
+                {
+                    return false;
+                }
+                _userManager.AddToRoleAsync(user, role);
+                return true;
+            }
+            return false;
         }
     }
 }

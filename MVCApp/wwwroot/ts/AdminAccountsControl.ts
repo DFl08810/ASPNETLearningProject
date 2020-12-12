@@ -192,38 +192,41 @@ $("#SearchButton").click(function (event) {
 $(function () {
     $(".delete-item").click(function (e) {
         var idSelection = $(this).attr('val');
+        var name = $(this).attr('accountname');
         var id: number = +idSelection;
 
-
-
-        console.log(idSelection);
-        $.ajax('/Admin/Accounts/Delete', {
-            type: 'GET',  // http method
-            //define content type for expected data
-            contentType: 'application/x-www-form-urlencoded',
-            data: { Id: id },  // data to submit
-            success: function (data, status, xhr) {
-                console.log(data, status, xhr);
-                let alertBox: string = `<div class="alert alert-success alert-dismissible fade show" role="alert">
+        if (confirm(`You are about to delete user ${name}`)) {
+            console.log(idSelection);
+            $.ajax('/Admin/Accounts/Delete', {
+                type: 'GET',  // http method
+                //define content type for expected data
+                contentType: 'application/x-www-form-urlencoded',
+                data: { Id: id },  // data to submit
+                success: function (data, status, xhr) {
+                    console.log(data, status, xhr);
+                    let alertBox: string = `<div class="alert alert-success alert-dismissible fade show" role="alert">
                                           <strong>Success:</strong> ${xhr.responseText}!.
                                           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                           </button>
                                         </div>`;
-            },
-            error: function (jqXhr, textStatus, errorMessage) {
-                jqXhr.responseText;
-                $(".table-card .alert").remove();
-                let alertBox: string = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                },
+                error: function (jqXhr, textStatus, errorMessage) {
+                    jqXhr.responseText;
+                    $(".table-card .alert").remove();
+                    let alertBox: string = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
                                           <strong>Error:</strong> ${jqXhr.responseText}!.
                                           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                           </button>
                                         </div>`;
 
-                $('.table-card').prepend(alertBox);
-            }
-        });
+                    $('.table-card').prepend(alertBox);
+                }
+            });
+        }
+
+
     });
 
 });
