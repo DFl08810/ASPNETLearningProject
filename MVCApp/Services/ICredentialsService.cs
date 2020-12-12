@@ -17,5 +17,7 @@ namespace MVCApp.Services
         User GetUser(int accountId);
 
         bool SetUserStatus(int accountId, bool status);
+
+        bool UpdateUser(User user, string role, System.Security.Claims.ClaimsPrincipal currentUser);
     }
 }
